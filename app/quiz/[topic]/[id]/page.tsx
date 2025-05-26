@@ -14,199 +14,276 @@ import { useParams } from "next/navigation"
 const quizData = {
   kinematics: {
     1: {
-      title: "Basic Projectile Motion",
+      title: "Kinematics Concepts",
       difficulty: "Basic",
-      timeLimit: 600, // 10 minutes
+      timeLimit: 600,
       questions: [
         {
           id: 1,
-          question:
-            "A ball is thrown horizontally from a height of 20 m with an initial velocity of 15 m/s. How long does it take to hit the ground?",
-          options: ["1.4 s", "2.0 s", "2.5 s", "3.0 s"],
+          question: "An object moves with constant velocity. Which of the following is true?",
+          options: [
+            "The object is accelerating.",
+            "The net force on the object is zero.",
+            "The object's speed is increasing.",
+            "The object is changing direction."
+          ],
           correct: 1,
-          explanation:
-            "Using the kinematic equation y = h₀ + v₀t - ½gt², where h₀ = 20 m, v₀ = 0 (vertical), and y = 0 (ground level). Solving: 0 = 20 - ½(9.8)t², gives t = √(40/9.8) ≈ 2.0 s",
-          formula: "y = h₀ + v₀t - ½gt²",
+          explanation: "When an object moves with constant velocity, there is no acceleration, which means the net force acting on it must be zero (Newton's First Law).",
+          formula: "F_net = 0 for constant velocity",
           points: 10,
         },
         {
           id: 2,
-          question: "What is the horizontal distance traveled by the ball in the previous question?",
-          options: ["20 m", "30 m", "40 m", "50 m"],
+          question: "A car accelerates uniformly from rest. Which graph best represents its velocity over time?",
+          options: [
+            "A horizontal line above the time axis.",
+            "A straight line with positive slope starting at the origin.",
+            "A curve concave down starting at the origin.",
+            "A straight line with negative slope starting above the time axis."
+          ],
           correct: 1,
-          explanation: "Horizontal distance = horizontal velocity × time = 15 m/s × 2.0 s = 30 m",
-          formula: "x = v₀ₓ × t",
+          explanation: "For uniform acceleration from rest, velocity increases linearly with time, resulting in a straight line with positive slope starting from the origin.",
+          formula: "v = v₀ + at",
           points: 10,
         },
         {
           id: 3,
-          question: "A projectile is launched at 45° with initial speed 20 m/s. What is its maximum height?",
-          options: ["5.1 m", "10.2 m", "15.3 m", "20.4 m"],
+          question: "An object is thrown vertically upward. At its highest point:",
+          options: [
+            "Velocity and acceleration are zero.",
+            "Velocity is zero; acceleration is downward.",
+            "Velocity is downward; acceleration is zero.",
+            "Velocity and acceleration are both downward."
+          ],
           correct: 1,
-          explanation:
-            "At 45°, v₀y = 20sin(45°) = 14.14 m/s. Using v² = v₀² - 2gh at max height (v=0): h = v₀y²/(2g) = (14.14)²/(2×9.8) ≈ 10.2 m",
-          formula: "h_max = v₀y²/(2g)",
-          points: 15,
+          explanation: "At the highest point, the object momentarily stops (velocity = 0) but still experiences gravitational acceleration downward.",
+          formula: "a = -g",
+          points: 10,
         },
         {
           id: 4,
-          question: "For maximum range on level ground, a projectile should be launched at what angle?",
-          options: ["30°", "45°", "60°", "90°"],
-          correct: 1,
-          explanation:
-            "Maximum range occurs at 45° because this angle maximizes the product of horizontal and vertical velocity components for the given initial speed.",
-          formula: "R = v₀²sin(2θ)/g",
+          question: "Which of the following statements about free fall is correct?",
+          options: [
+            "All objects fall at the same rate regardless of mass.",
+            "Heavier objects fall faster than lighter ones.",
+            "Air resistance causes all objects to fall at the same rate.",
+            "Objects in free fall have zero acceleration."
+          ],
+          correct: 0,
+          explanation: "In the absence of air resistance, all objects fall with the same acceleration due to gravity, regardless of their mass.",
+          formula: "a = g",
           points: 10,
         },
         {
           id: 5,
-          question: "A car accelerates from rest at 3 m/s² for 4 seconds. What distance does it travel?",
-          options: ["12 m", "18 m", "24 m", "36 m"],
+          question: "A position-time graph with a straight line indicates:",
+          options: [
+            "Constant acceleration.",
+            "Changing velocity.",
+            "Constant velocity.",
+            "Object at rest."
+          ],
           correct: 2,
-          explanation:
-            "Using x = x₀ + v₀t + ½at² with x₀ = 0, v₀ = 0, a = 3 m/s², t = 4 s: x = ½(3)(4)² = ½(3)(16) = 24 m",
-          formula: "x = x₀ + v₀t + ½at²",
+          explanation: "A straight line on a position-time graph indicates constant velocity, as the slope represents velocity.",
+          formula: "x = vt + x₀",
           points: 10,
-        },
+        }
       ],
     },
     2: {
-      title: "Kinematic Equations Application",
+      title: "Advanced Kinematics",
       difficulty: "Intermediate",
-      timeLimit: 900, // 15 minutes
+      timeLimit: 900,
       questions: [
         {
           id: 1,
-          question: "A ball is thrown upward with initial velocity 25 m/s. How high does it go?",
-          options: ["25.5 m", "31.9 m", "38.3 m", "44.7 m"],
+          question: "The area under a velocity-time graph represents:",
+          options: [
+            "Acceleration.",
+            "Displacement.",
+            "Speed.",
+            "Jerk."
+          ],
           correct: 1,
-          explanation:
-            "At maximum height, final velocity = 0. Using v² = v₀² - 2gh: 0 = (25)² - 2(9.8)h, so h = 625/(2×9.8) ≈ 31.9 m",
-          formula: "v² = v₀² - 2gh",
+          explanation: "The area under a velocity-time graph represents displacement, as it is the integral of velocity with respect to time.",
+          formula: "Δx = ∫v dt",
           points: 15,
         },
         {
           id: 2,
-          question:
-            "A car traveling at 30 m/s brakes with deceleration 5 m/s². How far does it travel before stopping?",
-          options: ["60 m", "90 m", "120 m", "150 m"],
+          question: "An object moving in a straight line slows down. Its acceleration is:",
+          options: [
+            "In the direction of motion.",
+            "Opposite to the direction of motion.",
+            "Zero.",
+            "Perpendicular to the direction of motion."
+          ],
           correct: 1,
-          explanation:
-            "Using v² = v₀² + 2ax with v = 0, v₀ = 30 m/s, a = -5 m/s²: 0 = (30)² + 2(-5)x, so x = 900/10 = 90 m",
-          formula: "v² = v₀² + 2ax",
+          explanation: "When an object slows down, its acceleration is opposite to its velocity direction.",
+          formula: "a = Δv/Δt",
           points: 15,
         },
         {
           id: 3,
-          question: "An object is dropped from rest and falls for 3 seconds. What is its final velocity?",
-          options: ["29.4 m/s", "32.1 m/s", "35.8 m/s", "39.2 m/s"],
-          correct: 0,
-          explanation: "Using v = v₀ + gt with v₀ = 0, g = 9.8 m/s², t = 3 s: v = 0 + (9.8)(3) = 29.4 m/s",
-          formula: "v = v₀ + gt",
+          question: "A velocity-time graph with a horizontal line indicates:",
+          options: [
+            "Constant acceleration.",
+            "Changing velocity.",
+            "Constant velocity.",
+            "Object at rest."
+          ],
+          correct: 2,
+          explanation: "A horizontal line on a velocity-time graph indicates constant velocity, as the slope (acceleration) is zero.",
+          formula: "v = constant",
           points: 10,
         },
         {
           id: 4,
-          question: "A projectile launched at 60° with speed 40 m/s. What is its time of flight?",
-          options: ["3.5 s", "7.1 s", "10.6 s", "14.1 s"],
-          correct: 1,
-          explanation: "Time of flight = 2v₀sin(θ)/g = 2(40)sin(60°)/9.8 = 2(40)(0.866)/9.8 ≈ 7.1 s",
-          formula: "t_flight = 2v₀sin(θ)/g",
+          question: "If an object has a negative acceleration, it is:",
+          options: [
+            "Always slowing down.",
+            "Always speeding up.",
+            "Slowing down or speeding up depending on direction of velocity.",
+            "Moving at constant speed."
+          ],
+          correct: 2,
+          explanation: "Negative acceleration can mean either slowing down in the positive direction or speeding up in the negative direction, depending on the initial velocity.",
+          formula: "a = Δv/Δt",
           points: 15,
-        },
+        }
       ],
-    },
+    }
   },
   dynamics: {
     1: {
-      title: "Newton's Second Law Problems",
+      title: "Newton's Laws",
       difficulty: "Basic",
       timeLimit: 600,
       questions: [
         {
           id: 1,
-          question: "A 5 kg box is pushed with a force of 20 N. If there's no friction, what is its acceleration?",
-          options: ["2 m/s²", "4 m/s²", "6 m/s²", "8 m/s²"],
+          question: "A box remains at rest on a horizontal surface. Which of the following best explains this situation?",
+          options: [
+            "No forces act on the box.",
+            "The net force on the box is zero.",
+            "The box has no mass.",
+            "The box is in motion but appears stationary."
+          ],
           correct: 1,
-          explanation: "Using Newton's second law F = ma: a = F/m = 20 N / 5 kg = 4 m/s²",
-          formula: "F = ma",
+          explanation: "According to Newton's First Law, an object remains at rest when the net force acting on it is zero.",
+          formula: "F_net = 0",
           points: 10,
         },
         {
           id: 2,
-          question: "A 10 kg object experiences a net force of 50 N. What is its acceleration?",
-          options: ["3 m/s²", "5 m/s²", "7 m/s²", "9 m/s²"],
-          correct: 1,
-          explanation: "Using F = ma: a = F/m = 50 N / 10 kg = 5 m/s²",
-          formula: "F = ma",
+          question: "An object moves at a constant velocity. What can be said about the net external force acting on it?",
+          options: [
+            "It is directed opposite to the motion.",
+            "It is directed along the motion.",
+            "It is zero.",
+            "It varies with time."
+          ],
+          correct: 2,
+          explanation: "According to Newton's First Law, an object moves at constant velocity when the net external force is zero.",
+          formula: "F_net = 0 for constant velocity",
           points: 10,
         },
         {
           id: 3,
-          question: "What force is needed to accelerate a 8 kg mass at 3 m/s²?",
-          options: ["18 N", "24 N", "30 N", "36 N"],
+          question: "According to Newton's Third Law, when you push against a wall, the wall:",
+          options: [
+            "Does not exert any force.",
+            "Exerts an equal and opposite force on you.",
+            "Exerts a greater force on you.",
+            "Moves in the direction of your push."
+          ],
           correct: 1,
-          explanation: "Using F = ma: F = (8 kg)(3 m/s²) = 24 N",
-          formula: "F = ma",
+          explanation: "Newton's Third Law states that for every action force, there is an equal and opposite reaction force.",
+          formula: "F_action = -F_reaction",
           points: 10,
         },
         {
           id: 4,
-          question: "A 2 kg object has weight of approximately:",
-          options: ["2 N", "9.8 N", "19.6 N", "39.2 N"],
+          question: "A car accelerates forward. The force propelling the car forward is exerted by:",
+          options: [
+            "The engine on the wheels.",
+            "The wheels on the road.",
+            "The road on the wheels.",
+            "Air resistance."
+          ],
           correct: 2,
-          explanation: "Weight = mg = (2 kg)(9.8 m/s²) = 19.6 N",
-          formula: "W = mg",
+          explanation: "The road exerts a forward force on the wheels, which propels the car forward (action-reaction pair).",
+          formula: "F = ma",
           points: 10,
-        },
+        }
       ],
-    },
+    }
   },
-  energy: {
+  circular: {
     1: {
-      title: "Energy Conservation Problems",
-      difficulty: "Basic",
+      title: "Circular Motion",
+      difficulty: "Intermediate",
       timeLimit: 600,
       questions: [
         {
           id: 1,
-          question: "A 2 kg object moving at 10 m/s has kinetic energy of:",
-          options: ["50 J", "100 J", "150 J", "200 J"],
-          correct: 1,
-          explanation: "KE = ½mv² = ½(2 kg)(10 m/s)² = ½(2)(100) = 100 J",
-          formula: "KE = ½mv²",
-          points: 10,
-        },
-        {
-          id: 2,
-          question: "A 5 kg object at height 10 m has potential energy of:",
-          options: ["490 J", "500 J", "510 J", "520 J"],
-          correct: 0,
-          explanation: "PE = mgh = (5 kg)(9.8 m/s²)(10 m) = 490 J",
-          formula: "PE = mgh",
-          points: 10,
-        },
-        {
-          id: 3,
-          question: "An object slides down a frictionless incline from height 5 m. Its speed at the bottom is:",
-          options: ["7.0 m/s", "9.9 m/s", "12.1 m/s", "14.0 m/s"],
-          correct: 1,
-          explanation: "Using energy conservation: mgh = ½mv², so v = √(2gh) = √(2×9.8×5) = √98 ≈ 9.9 m/s",
-          formula: "mgh = ½mv²",
+          question: "An object moves in a circle at constant speed. What is the direction of its acceleration?",
+          options: [
+            "Tangential to the circle",
+            "Radially outward",
+            "Radially inward",
+            "Zero"
+          ],
+          correct: 2,
+          explanation: "In uniform circular motion, the acceleration is directed toward the center of the circle (centripetal acceleration).",
+          formula: "a_c = v²/r",
           points: 15,
         },
         {
-          id: 4,
-          question: "A spring with k = 100 N/m is compressed 0.2 m. Its elastic potential energy is:",
-          options: ["1 J", "2 J", "3 J", "4 J"],
-          correct: 1,
-          explanation: "PE_spring = ½kx² = ½(100 N/m)(0.2 m)² = ½(100)(0.04) = 2 J",
-          formula: "PE = ½kx²",
+          id: 2,
+          question: "A car rounds a flat curve at constant speed. What provides the necessary centripetal force?",
+          options: [
+            "Gravity",
+            "Normal force",
+            "Friction",
+            "Engine thrust"
+          ],
+          correct: 2,
+          explanation: "On a flat curve, static friction between the tires and the road provides the centripetal force needed for circular motion.",
+          formula: "F_c = mv²/r",
+          points: 15,
+        },
+        {
+          id: 3,
+          question: "In uniform circular motion, which of the following remains constant?",
+          options: [
+            "Velocity",
+            "Acceleration",
+            "Speed",
+            "Direction of motion"
+          ],
+          correct: 2,
+          explanation: "In uniform circular motion, only the speed remains constant, while velocity and acceleration are constantly changing direction.",
+          formula: "v = constant",
           points: 10,
         },
+        {
+          id: 4,
+          question: "A ball is tied to a string and swung in a horizontal circle. If the string breaks, the ball will:",
+          options: [
+            "Move radially inward",
+            "Move radially outward",
+            "Continue in a circular path",
+            "Move tangentially to the circle"
+          ],
+          correct: 3,
+          explanation: "When the string breaks, the ball will move in a straight line tangent to the circle at the point of release (Newton's First Law).",
+          formula: "v = constant (no force)",
+          points: 15,
+        }
       ],
-    },
-  },
+    }
+  }
 }
 
 export default function QuizPage() {
@@ -579,3 +656,4 @@ export default function QuizPage() {
     </div>
   )
 }
+
