@@ -14,9 +14,9 @@ import { useParams } from "next/navigation"
 const quizData = {
   kinematics: {
     1: {
-      title: "Kinematics Concepts",
+      title: "Kinematics Fundamentals",
       difficulty: "Basic",
-      timeLimit: 600,
+      timeLimit: 600, // 10 minutes
       questions: [
         {
           id: 1,
@@ -57,7 +57,7 @@ const quizData = {
           ],
           correct: 1,
           explanation: "At the highest point, the object momentarily stops (velocity = 0) but still experiences gravitational acceleration downward.",
-          formula: "a = -g",
+          formula: "a = -g (constant)",
           points: 10,
         },
         {
@@ -71,7 +71,7 @@ const quizData = {
           ],
           correct: 0,
           explanation: "In the absence of air resistance, all objects fall with the same acceleration due to gravity, regardless of their mass.",
-          formula: "a = g",
+          formula: "a = g = 9.8 m/s²",
           points: 10,
         },
         {
@@ -85,7 +85,7 @@ const quizData = {
           ],
           correct: 2,
           explanation: "A straight line on a position-time graph indicates constant velocity, as the slope represents velocity.",
-          formula: "x = vt + x₀",
+          formula: "v = Δx/Δt",
           points: 10,
         }
       ],
@@ -93,7 +93,7 @@ const quizData = {
     2: {
       title: "Advanced Kinematics",
       difficulty: "Intermediate",
-      timeLimit: 900,
+      timeLimit: 900, // 15 minutes
       questions: [
         {
           id: 1,
@@ -119,7 +119,7 @@ const quizData = {
             "Perpendicular to the direction of motion."
           ],
           correct: 1,
-          explanation: "When an object slows down, its acceleration is opposite to its velocity direction.",
+          explanation: "When an object slows down, its acceleration is opposite to its velocity (direction of motion).",
           formula: "a = Δv/Δt",
           points: 15,
         },
@@ -134,8 +134,8 @@ const quizData = {
           ],
           correct: 2,
           explanation: "A horizontal line on a velocity-time graph indicates constant velocity, as the slope (acceleration) is zero.",
-          formula: "v = constant",
-          points: 10,
+          formula: "a = 0 for constant velocity",
+          points: 15,
         },
         {
           id: 4,
@@ -152,7 +152,7 @@ const quizData = {
           points: 15,
         }
       ],
-    }
+    },
   },
   dynamics: {
     1: {
@@ -184,7 +184,7 @@ const quizData = {
             "It varies with time."
           ],
           correct: 2,
-          explanation: "According to Newton's First Law, an object moves at constant velocity when the net external force is zero.",
+          explanation: "According to Newton's First Law, an object moving at constant velocity has zero net force acting on it.",
           formula: "F_net = 0 for constant velocity",
           points: 10,
         },
@@ -212,17 +212,17 @@ const quizData = {
             "Air resistance."
           ],
           correct: 2,
-          explanation: "The road exerts a forward force on the wheels, which propels the car forward (action-reaction pair).",
+          explanation: "The road exerts a forward force on the wheels, which propels the car forward (Newton's Third Law).",
           formula: "F = ma",
           points: 10,
         }
       ],
-    }
+    },
   },
-  circular: {
+  "circular-motion": {
     1: {
-      title: "Circular Motion",
-      difficulty: "Intermediate",
+      title: "Circular Motion Basics",
+      difficulty: "Basic",
       timeLimit: 600,
       questions: [
         {
@@ -237,7 +237,7 @@ const quizData = {
           correct: 2,
           explanation: "In uniform circular motion, the acceleration is directed toward the center of the circle (centripetal acceleration).",
           formula: "a_c = v²/r",
-          points: 15,
+          points: 10,
         },
         {
           id: 2,
@@ -251,7 +251,7 @@ const quizData = {
           correct: 2,
           explanation: "On a flat curve, static friction between the tires and the road provides the centripetal force needed for circular motion.",
           formula: "F_c = mv²/r",
-          points: 15,
+          points: 10,
         },
         {
           id: 3,
@@ -277,12 +277,272 @@ const quizData = {
             "Move tangentially to the circle"
           ],
           correct: 3,
-          explanation: "When the string breaks, the ball will move in a straight line tangent to the circle at the point of release (Newton's First Law).",
-          formula: "v = constant (no force)",
-          points: 15,
+          explanation: "When the centripetal force (string tension) is removed, the ball will move in a straight line tangent to its circular path (Newton's First Law).",
+          formula: "F_c = 0 after string breaks",
+          points: 10,
         }
       ],
-    }
+    },
+  },
+  energy: {
+    1: {
+      title: "Work and Energy",
+      difficulty: "Basic",
+      timeLimit: 600,
+      questions: [
+        {
+          id: 1,
+          question: "When a constant force is applied to an object, the work done on the object is:",
+          options: [
+            "Always positive",
+            "Always negative",
+            "Zero if the force is perpendicular to the displacement",
+            "Independent of the angle between force and displacement"
+          ],
+          correct: 2,
+          explanation: "Work is zero when the force is perpendicular to the displacement, as W = F·d·cos(θ) and cos(90°) = 0.",
+          formula: "W = F·d·cos(θ)",
+          points: 10,
+        },
+        {
+          id: 2,
+          question: "Which of the following statements is true regarding kinetic energy?",
+          options: [
+            "It is a scalar quantity",
+            "It depends on the velocity squared",
+            "It is always positive",
+            "It is independent of mass"
+          ],
+          correct: 1,
+          explanation: "Kinetic energy depends on the square of velocity, as shown in the formula KE = ½mv².",
+          formula: "KE = ½mv²",
+          points: 10,
+        },
+        {
+          id: 3,
+          question: "If the velocity of an object is doubled, its kinetic energy:",
+          options: [
+            "Doubles",
+            "Quadruples",
+            "Halves",
+            "Remains the same"
+          ],
+          correct: 1,
+          explanation: "Since kinetic energy depends on velocity squared, doubling the velocity quadruples the kinetic energy.",
+          formula: "KE ∝ v²",
+          points: 10,
+        },
+        {
+          id: 4,
+          question: "The work-energy theorem states that the work done on an object is equal to:",
+          options: [
+            "The change in its velocity",
+            "The change in its momentum",
+            "The change in its kinetic energy",
+            "The product of force and time"
+          ],
+          correct: 2,
+          explanation: "The work-energy theorem states that the net work done on an object equals its change in kinetic energy.",
+          formula: "W_net = ΔKE",
+          points: 10,
+        }
+      ],
+    },
+  },
+  momentum: {
+    1: {
+      title: "Linear Momentum",
+      difficulty: "Basic",
+      timeLimit: 600,
+      questions: [
+        {
+          id: 1,
+          question: "Momentum is defined as the product of an object's:",
+          options: [
+            "Mass and velocity",
+            "Mass and acceleration",
+            "Force and time",
+            "Velocity and time"
+          ],
+          correct: 0,
+          explanation: "Momentum is defined as the product of an object's mass and velocity: p = mv.",
+          formula: "p = mv",
+          points: 10,
+        },
+        {
+          id: 2,
+          question: "Which of the following statements is true about momentum?",
+          options: [
+            "Momentum is a scalar quantity.",
+            "Momentum is conserved only when no external forces act on a system.",
+            "Momentum is always conserved in all types of collisions.",
+            "Momentum can be negative if the velocity is negative."
+          ],
+          correct: 1,
+          explanation: "Momentum is conserved only when no external forces act on a system, as per the law of conservation of momentum.",
+          formula: "Σp_initial = Σp_final",
+          points: 10,
+        },
+        {
+          id: 3,
+          question: "If the velocity of an object is doubled, its momentum:",
+          options: [
+            "Doubles",
+            "Quadruples",
+            "Halves",
+            "Remains the same"
+          ],
+          correct: 0,
+          explanation: "Since momentum is directly proportional to velocity, doubling the velocity doubles the momentum.",
+          formula: "p = mv",
+          points: 10,
+        },
+        {
+          id: 4,
+          question: "The impulse experienced by an object is equal to:",
+          options: [
+            "The change in its velocity",
+            "The change in its momentum",
+            "The product of force and time",
+            "All of the above"
+          ],
+          correct: 3,
+          explanation: "Impulse equals the change in momentum and is also equal to the product of force and time: J = Δp = F·Δt.",
+          formula: "J = Δp = F·Δt",
+          points: 10,
+        }
+      ],
+    },
+  },
+  "harmonic-motion": {
+    1: {
+      title: "Simple Harmonic Motion",
+      difficulty: "Basic",
+      timeLimit: 600,
+      questions: [
+        {
+          id: 1,
+          question: "In simple harmonic motion, when is the acceleration of the object at its maximum magnitude?",
+          options: [
+            "At the equilibrium position",
+            "At maximum displacement",
+            "When velocity is maximum",
+            "When kinetic energy is maximum"
+          ],
+          correct: 1,
+          explanation: "In SHM, acceleration is maximum at maximum displacement, where the restoring force is greatest.",
+          formula: "a = -ω²x",
+          points: 10,
+        },
+        {
+          id: 2,
+          question: "A mass-spring system oscillates with amplitude A. At what displacement is the kinetic energy equal to the potential energy?",
+          options: [
+            "0",
+            "A/2",
+            "A/√2",
+            "A"
+          ],
+          correct: 2,
+          explanation: "When KE = PE, the displacement is A/√2, as this is where half the total energy is kinetic and half is potential.",
+          formula: "KE = PE at x = A/√2",
+          points: 10,
+        },
+        {
+          id: 3,
+          question: "Doubling the mass attached to a spring affects the period how?",
+          options: [
+            "Period doubles",
+            "Period increases by √2",
+            "Period remains unchanged",
+            "Period decreases by √2"
+          ],
+          correct: 1,
+          explanation: "The period of a mass-spring system is proportional to the square root of the mass: T = 2π√(m/k).",
+          formula: "T = 2π√(m/k)",
+          points: 10,
+        },
+        {
+          id: 4,
+          question: "A pendulum's length is quadrupled. How does its period change?",
+          options: [
+            "Doubles",
+            "Quadruples",
+            "Halves",
+            "Remains the same"
+          ],
+          correct: 0,
+          explanation: "The period of a pendulum is proportional to the square root of its length: T = 2π√(L/g).",
+          formula: "T = 2π√(L/g)",
+          points: 10,
+        }
+      ],
+    },
+  },
+  fluids: {
+    1: {
+      title: "Fluid Mechanics",
+      difficulty: "Basic",
+      timeLimit: 600,
+      questions: [
+        {
+          id: 1,
+          question: "An object is fully submerged in water and experiences a buoyant force. If the object is moved to a fluid with a higher density, how does the buoyant force change?",
+          options: [
+            "Increases",
+            "Decreases",
+            "Remains the same",
+            "Cannot be determined without more information"
+          ],
+          correct: 0,
+          explanation: "Buoyant force equals the weight of the displaced fluid. A denser fluid has more weight per unit volume, so the buoyant force increases.",
+          formula: "F_b = ρ_fluid·V_displaced·g",
+          points: 10,
+        },
+        {
+          id: 2,
+          question: "A cube floats in water with half of its volume submerged. If placed in oil with a lower density than water, what happens to the submerged volume?",
+          options: [
+            "It increases",
+            "It decreases",
+            "It remains the same",
+            "The cube sinks"
+          ],
+          correct: 0,
+          explanation: "In a less dense fluid, a greater volume must be submerged to displace the same weight of fluid.",
+          formula: "V_submerged = m_object/ρ_fluid",
+          points: 10,
+        },
+        {
+          id: 3,
+          question: "In a fluid at rest, how does pressure change with depth?",
+          options: [
+            "Increases linearly",
+            "Decreases linearly",
+            "Remains constant",
+            "Increases exponentially"
+          ],
+          correct: 0,
+          explanation: "Pressure increases linearly with depth according to the equation P = ρgh.",
+          formula: "P = P₀ + ρgh",
+          points: 10,
+        },
+        {
+          id: 4,
+          question: "Two identical containers are filled to the same height, one with water and the other with mercury. Which container has a greater pressure at the bottom?",
+          options: [
+            "Water",
+            "Mercury",
+            "Both have the same pressure",
+            "Cannot be determined"
+          ],
+          correct: 1,
+          explanation: "Mercury has a higher density than water, so at the same depth, the pressure is greater.",
+          formula: "P = ρgh",
+          points: 10,
+        }
+      ],
+    },
   }
 }
 
@@ -299,6 +559,21 @@ export default function QuizPage() {
   const [timeLeft, setTimeLeft] = useState(quiz?.timeLimit || 600)
   const [quizStarted, setQuizStarted] = useState(false)
   const [score, setScore] = useState(0)
+  const [isCompleted, setIsCompleted] = useState(false)
+
+  useEffect(() => {
+    // Check if quiz is already completed
+    const userData = localStorage.getItem("user")
+    if (userData) {
+      const parsedUser = JSON.parse(userData)
+      const savedProgress = localStorage.getItem(`progress_${parsedUser.email}`)
+      if (savedProgress) {
+        const progress = JSON.parse(savedProgress)
+        const quizKey = `${topic}-${quizId}`
+        setIsCompleted(progress.completedQuizzes?.[quizKey] || false)
+      }
+    }
+  }, [topic, quizId])
 
   useEffect(() => {
     if (quizStarted && timeLeft > 0 && !showResults) {
@@ -329,6 +604,32 @@ export default function QuizPage() {
     })
     setScore(totalScore)
     setShowResults(true)
+
+    // Save quiz completion and score
+    const userData = localStorage.getItem("user")
+    if (userData) {
+      const parsedUser = JSON.parse(userData)
+      const savedProgress = localStorage.getItem(`progress_${parsedUser.email}`)
+      const progress = savedProgress ? JSON.parse(savedProgress) : { completedQuizzes: {}, quizScores: {} }
+      const quizKey = `${topic}-${quizId}`
+      
+      // Only mark as completed if all questions were answered
+      const allQuestionsAnswered = quiz.questions.every(q => selectedAnswers[q.id] !== undefined)
+      
+      const updatedProgress = {
+        ...progress,
+        completedQuizzes: {
+          ...progress.completedQuizzes,
+          [quizKey]: allQuestionsAnswered
+        },
+        quizScores: {
+          ...progress.quizScores,
+          [quizKey]: allQuestionsAnswered ? totalScore : null
+        }
+      }
+      localStorage.setItem(`progress_${parsedUser.email}`, JSON.stringify(updatedProgress))
+      setIsCompleted(allQuestionsAnswered)
+    }
   }
 
   const formatTime = (seconds: number) => {
@@ -656,4 +957,3 @@ export default function QuizPage() {
     </div>
   )
 }
-
