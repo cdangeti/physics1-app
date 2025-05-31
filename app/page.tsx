@@ -307,7 +307,7 @@ export default function HomePage() {
       relative: "Relative Motion",
       forces: "Force Analysis",
       friction: "Friction Forces",
-      incline: "Inclined Plane",
+      "Inclined-Plane": "Inclined Plane",
       elevator: "Elevator Physics",
       centripetal: "Centripetal Force",
       orbital: "Orbital Motion",
@@ -479,7 +479,7 @@ export default function HomePage() {
   const getVideoIds = (topicId: string) => {
     const videos = {
       kinematics: ["kinematics-intro", "kinematics-projectile", "kinematics-graphs"],
-      dynamics: ["dynamics-newton", "dynamics-friction"],
+      dynamics: ["dynamics-newton", "dynamics-friction",""],
       "circular-motion": ["circular-intro", "circular-gravity"],
       energy: ["energy-conservation", "energy-work", "energy-power"],
       momentum: ["momentum-intro", "momentum-collisions"],
