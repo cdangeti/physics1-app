@@ -26,502 +26,147 @@ import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
 // User progress data - (completedSimulations will be overridden by allSimulationsStatus)
+// The completedProblems here are effectively stubs now, localStorage is the source of truth.
 const userProgress = {
-  completedSimulations: ["projectile", "graphs", "forces", "energy-pendulum", "collision-elastic"],
-  completedProblems: ["kinematics-1", "kinematics-2", "dynamics-1", "energy-1", "energy-2", "energy-3"],
-  watchedVideos: ["kinematics-intro", "kinematics-projectile", "dynamics-newton", "energy-conservation"],
+  completedSimulations: [], // Will be populated by allSimulationsStatus logic
+  completedProblems: [],   // Will be populated by localStorage logic
+  watchedVideos: ["kinematics-intro", "kinematics-projectile", "dynamics-newton", "energy-conservation"], // Example, manage as needed
 }
 
 // Data reflecting the actual completion status of all simulations
 // This should ideally be sourced from a shared location or service,
 // but for this task, it's defined here based on the review.
 const allSimulationsStatus: { [id: string]: boolean } = {
-  "projectile": true,
-  "graphs": true,
-  "relative": true,
-  "forces": true,
-  "friction": true,
-  "energy-pendulum": true,
-  "collision-elastic": true,
-  "centripetal": true,
-  "spring-mass": true,
-  "torque-balance": true,
-  "rotating-disk": true,
-  "gyroscope": true,
-  "rolling-objects": true,
-  "angular-momentum": true,
-  "buoyancy": true,
-  "fluid-flow": true,
-  "pressure-depth": true,
+  "projectile": true,  // Only projectile is true now
+  "graphs": false,
+  "relative": false,
+  "forces": false,
+  "friction": false,
+  "energy-pendulum": false,
+  "collision-elastic": false,
+  "centripetal": false,
+  "spring-mass": false,
+  "torque-balance": false,
+  "rotating-disk": false,
+  "gyroscope": false,
+  "rolling-objects": false,
+  "angular-momentum": false,
+  "buoyancy": false,
+  "fluid-flow": false,
+  "pressure-depth": false,
 };
 
-// Topic data with static structure first
 const topicData = {
   kinematics: {
     title: "Kinematics",
     description: "Motion in one and two dimensions",
     icon: TrendingUp,
-    progress: 0, // Will be calculated later
+    progress: 0,
     color: "bg-blue-500",
     concepts: ["Position, velocity, and acceleration", "Kinematic equations", "Projectile motion", "Relative motion"],
     simulations: [
-      {
-        id: "projectile",
-        title: "Projectile Motion Simulator",
-        description: "Explore how angle and velocity affect projectile paths",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("projectile"),
-      },
-      {
-        id: "graphs",
-        title: "Motion Graphs",
-        description: "Visualize position, velocity, and acceleration relationships",
-        difficulty: "Basic",
-        completed: userProgress.completedSimulations.includes("graphs"),
-      },
-      {
-        id: "relative",
-        title: "Relative Motion",
-        description: "Understand motion from different reference frames",
-        difficulty: "Advanced",
-        completed: userProgress.completedSimulations.includes("relative"),
-      },
+      { id: "projectile", title: "Projectile Motion Simulator", description: "Explore projectile paths", difficulty: "Intermediate", completed: false },
+      { id: "graphs", title: "Motion Graphs", description: "Visualize motion relationships", difficulty: "Basic", completed: false },
+      { id: "relative", title: "Relative Motion", description: "Motion from different frames", difficulty: "Advanced", completed: false },
     ],
     videos: [
-      {
-        title: "Introduction to Kinematics",
-        duration: "12:34",
-        rating: 4.8,
-        views: "125K",
-        watched: userProgress.watchedVideos.includes("kinematics-intro"),
-        url: "https://www.youtube.com/watch?v=ZM8ECpBuQYE",
-        description: "Basic concepts of motion, position, velocity, and acceleration",
-      },
-      {
-        title: "Projectile Motion Explained",
-        duration: "18:45",
-        rating: 4.9,
-        views: "89K",
-        watched: userProgress.watchedVideos.includes("kinematics-projectile"),
-        url: "https://www.youtube.com/watch?v=R-q0KrxxGK0",
-        description: "Complete guide to projectile motion with examples",
-      },
-      {
-        title: "Kinematic Equations Derivation",
-        duration: "15:22",
-        rating: 4.7,
-        views: "67K",
-        watched: userProgress.watchedVideos.includes("kinematics-graphs"),
-        url: "https://www.youtube.com/watch?v=opnU1ekFBNU",
-        description: "How to derive and use the kinematic equations",
-      },
+      { title: "Introduction to Kinematics", duration: "12:34", rating: 4.8, views: "125K", watched: false, url: "https://www.youtube.com/watch?v=ZM8ECpBuQYE", description: "Basic concepts" },
+      { title: "Projectile Motion Explained", duration: "18:45", rating: 4.9, views: "89K", watched: false, url: "https://www.youtube.com/watch?v=R-q0KrxxGK0", description: "Projectile guide" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Basic Projectile Motion",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("kinematics-1"),
-        score: 85,
-      },
-      {
-        id: 2,
-        title: "Kinematic Equations Application",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("kinematics-2"),
-        score: 92,
-      },
-      {
-        id: 3,
-        title: "Complex Projectile Scenarios",
-        difficulty: "Advanced",
-        completed: userProgress.completedProblems.includes("kinematics-3"),
-        score: null,
-      },
+      { id: 1, title: "Kinematics Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Kinematics Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
   dynamics: {
     title: "Dynamics",
     description: "Newton's Laws of Motion",
     icon: Zap,
-    progress: 0, // Will be calculated later
+    progress: 0,
     color: "bg-green-500",
-    concepts: [
-      "Newton's First Law (Inertia)",
-      "Newton's Second Law (F = ma)",
-      "Newton's Third Law (Action-Reaction)",
-      "Free body diagrams",
-      "Friction forces",
-    ],
+    concepts: ["Newton's First Law (Inertia)", "Newton's Second Law (F = ma)", "Newton's Third Law (Action-Reaction)", "Free body diagrams", "Friction forces"],
     simulations: [
-      {
-        id: "forces",
-        title: "Force and Motion",
-        description: "Apply forces and observe resulting motion",
-        difficulty: "Basic",
-        completed: userProgress.completedSimulations.includes("forces"),
-      },
-      {
-        id: "friction",
-        title: "Friction Simulator",
-        description: "Explore static and kinetic friction",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("friction"),
-      },
-      {
-        id: "incline",
-        title: "Inclined Plane Forces",
-        description: "Analyze forces on inclined surfaces",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("incline"),
-      },
-      {
-        id: "elevator",
-        title: "Elevator Physics",
-        description: "Understand apparent weight in accelerating systems",
-        difficulty: "Advanced",
-        completed: userProgress.completedSimulations.includes("elevator"),
-      },
+      { id: "forces", title: "Force and Motion", description: "Apply forces, observe motion", difficulty: "Basic", completed: false },
+      { id: "friction", title: "Friction Simulator", description: "Explore static/kinetic friction", difficulty: "Intermediate", completed: false },
     ],
     videos: [
-      {
-        title: "Newton's Laws Explained",
-        duration: "20:15",
-        rating: 4.9,
-        views: "200K",
-        watched: userProgress.watchedVideos.includes("dynamics-newton"),
-        url: "https://www.youtube.com/watch?v=kKKM8Y-u7ds",
-        description: "Complete overview of Newton's three laws of motion",
-      },
-      {
-        title: "Free Body Diagrams",
-        duration: "14:30",
-        rating: 4.8,
-        views: "150K",
-        watched: userProgress.watchedVideos.includes("dynamics-friction"),
-        url: "https://www.youtube.com/watch?v=95K2d_8LbAY",
-        description: "How to draw and analyze free body diagrams",
-      },
-      {
-        title: "Friction Forces",
-        duration: "16:45",
-        rating: 4.7,
-        views: "120K",
-        watched: userProgress.watchedVideos.includes("dynamics-friction-advanced"),
-        url: "https://www.youtube.com/watch?v=fo_pmp5rtzo",
-        description: "Static and kinetic friction with problem solving",
-      },
+      { title: "Newton's Laws Explained", duration: "20:15", rating: 4.9, views: "200K", watched: false, url: "https://www.youtube.com/watch?v=kKKM8Y-u7ds", description: "Newton's three laws" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Newton's Second Law Problems",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("dynamics-1"),
-        score: 78,
-      },
-      {
-        id: 2,
-        title: "Friction Force Calculations",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("dynamics-2"),
-        score: null,
-      },
+      { id: 1, title: "Dynamics Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Dynamics Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
   "circular-motion": {
     title: "Circular Motion",
     description: "Circular motion and gravitation",
     icon: Orbit,
-    progress: 0, // Will be calculated later
+    progress: 0,
     color: "bg-purple-500",
-    concepts: [
-      "Centripetal acceleration",
-      "Centripetal force",
-      "Angular velocity and frequency",
-      "Uniform circular motion",
-      "Banked curves",
-    ],
+    concepts: ["Centripetal acceleration", "Centripetal force", "Angular velocity", "Uniform circular motion"],
     simulations: [
-      {
-        id: "centripetal",
-        title: "Centripetal Force",
-        description: "Visualize forces in circular motion",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("centripetal"),
-      },
-      {
-        id: "orbital",
-        title: "Orbital Motion",
-        description: "Explore planetary and satellite motion",
-        difficulty: "Advanced",
-        completed: userProgress.completedSimulations.includes("orbital"),
-      },
+      { id: "centripetal", title: "Centripetal Force", description: "Visualize circular forces", difficulty: "Intermediate", completed: false },
     ],
     videos: [
-      {
-        title: "Introduction to Circular Motion",
-        duration: "15:30",
-        rating: 4.8,
-        views: "140K",
-        watched: userProgress.watchedVideos.includes("circular-intro"),
-        url: "https://www.youtube.com/watch?v=bpFK2VCRHUs",
-        description: "Basic concepts of circular motion and centripetal force",
-      },
-      {
-        title: "Gravity and Orbital Motion",
-        duration: "18:20",
-        rating: 4.9,
-        views: "110K",
-        watched: userProgress.watchedVideos.includes("circular-gravity"),
-        url: "https://www.youtube.com/watch?v=7gf6YpdvtE0",
-        description: "Understanding gravitational forces and orbital mechanics",
-      },
+      { title: "Introduction to Circular Motion", duration: "15:30", rating: 4.8, views: "140K", watched: false, url: "https://www.youtube.com/watch?v=bpFK2VCRHUs", description: "Centripetal force basics" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Centripetal Force Problems",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("circular-1"),
-        score: null,
-      },
-      {
-        id: 2,
-        title: "Circular Motion Applications",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("circular-2"),
-        score: null,
-      },
-      {
-        id: 3,
-        title: "Orbital Mechanics",
-        difficulty: "Advanced",
-        completed: userProgress.completedProblems.includes("circular-3"),
-        score: null,
-      },
+      { id: 1, title: "Circular Motion Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Circular Motion Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
   energy: {
     title: "Energy",
     description: "Work, energy, and power",
     icon: Battery,
-    progress: 0, // Will be calculated later
+    progress: 0,
     color: "bg-yellow-500",
-    concepts: ["Kinetic and potential energy", "Conservation of energy", "Work-energy theorem", "Power and efficiency"],
+    concepts: ["Kinetic and potential energy", "Conservation of energy", "Work-energy theorem", "Power"],
     simulations: [
-      {
-        id: "energy-pendulum",
-        title: "Energy in Pendulum Motion",
-        description: "Observe energy transformations in a swinging pendulum",
-        difficulty: "Basic",
-        completed: userProgress.completedSimulations.includes("energy-pendulum"),
-      },
-      {
-        id: "energy-roller",
-        title: "Roller Coaster Physics",
-        description: "Design tracks and analyze energy conservation",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("energy-roller"),
-      },
-      {
-        id: "energy-spring",
-        title: "Spring Potential Energy",
-        description: "Explore elastic potential energy in springs",
-        difficulty: "Advanced",
-        completed: userProgress.completedSimulations.includes("energy-spring"),
-      },
+      { id: "energy-pendulum", title: "Energy in Pendulum", description: "Energy transformations", difficulty: "Basic", completed: false },
     ],
     videos: [
-      {
-        title: "Conservation of Energy",
-        duration: "16:20",
-        rating: 4.9,
-        views: "180K",
-        watched: userProgress.watchedVideos.includes("energy-conservation"),
-        url: "https://www.youtube.com/watch?v=79YPBtH_2Qs",
-        description: "Energy conservation principles and applications",
-      },
-      {
-        title: "Work and Energy",
-        duration: "13:45",
-        rating: 4.7,
-        views: "120K",
-        watched: userProgress.watchedVideos.includes("energy-work"),
-        url: "https://www.youtube.com/watch?v=w4QFJb9a8vo",
-        description: "Work-energy theorem and problem solving",
-      },
-      {
-        title: "Power in Physics",
-        duration: "11:30",
-        rating: 4.6,
-        views: "95K",
-        watched: userProgress.watchedVideos.includes("energy-power"),
-        url: "https://www.youtube.com/watch?v=m2tJHiiShps",
-        description: "Understanding power, efficiency, and energy transfer",
-      },
+      { title: "Conservation of Energy", duration: "16:20", rating: 4.9, views: "180K", watched: false, url: "https://www.youtube.com/watch?v=79YPBtH_2Qs", description: "Energy conservation principles" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Energy Conservation Problems",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("energy-1"),
-        score: 88,
-      },
-      {
-        id: 2,
-        title: "Work-Energy Theorem",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("energy-2"),
-        score: 91,
-      },
-      {
-        id: 3,
-        title: "Spring Energy Systems",
-        difficulty: "Advanced",
-        completed: userProgress.completedProblems.includes("energy-3"),
-        score: 85,
-      },
+      { id: 1, title: "Energy Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Energy Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
   momentum: {
     title: "Momentum",
     description: "Linear momentum and collisions",
     icon: RotateCcw,
-    progress: 0, // Will be calculated later
+    progress: 0,
     color: "bg-red-500",
-    concepts: [
-      "Linear momentum",
-      "Conservation of momentum",
-      "Elastic collisions",
-      "Inelastic collisions",
-      "Impulse-momentum theorem",
-    ],
+    concepts: ["Linear momentum", "Conservation of momentum", "Elastic/Inelastic collisions", "Impulse"],
     simulations: [
-      {
-        id: "collision-elastic",
-        title: "Elastic Collisions",
-        description: "Analyze perfectly elastic collision scenarios",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("collision-elastic"),
-      },
-      {
-        id: "collision-inelastic",
-        title: "Inelastic Collisions",
-        description: "Study momentum conservation in inelastic collisions",
-        difficulty: "Advanced",
-        completed: userProgress.completedSimulations.includes("collision-inelastic"),
-      },
+      { id: "collision-elastic", title: "Elastic Collisions", description: "Elastic collision scenarios", difficulty: "Intermediate", completed: false },
     ],
     videos: [
-      {
-        title: "Introduction to Momentum",
-        duration: "14:25",
-        rating: 4.8,
-        views: "160K",
-        watched: userProgress.watchedVideos.includes("momentum-intro"),
-        url: "https://www.youtube.com/watch?v=uPpkgUvlnkE",
-        description: "Basic momentum concepts and conservation",
-      },
-      {
-        title: "Collision Analysis",
-        duration: "18:10",
-        rating: 4.9,
-        views: "140K",
-        watched: userProgress.watchedVideos.includes("momentum-collisions"),
-        url: "https://www.youtube.com/watch?v=7O4V7JzOHGo",
-        description: "Elastic and inelastic collision problem solving",
-      },
+      { title: "Introduction to Momentum", duration: "14:25", rating: 4.8, views: "160K", watched: false, url: "https://www.youtube.com/watch?v=uPpkgUvlnkE", description: "Momentum concepts" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Momentum Conservation",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("momentum-1"),
-        score: 82,
-      },
-      {
-        id: 2,
-        title: "Collision Problems",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("momentum-2"),
-        score: null,
-      },
+      { id: 1, title: "Momentum Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Momentum Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
   "harmonic-motion": {
     title: "Simple Harmonic Motion",
     description: "Oscillations and waves",
     icon: Waves,
-    progress: 0, // Will be calculated later
+    progress: 0,
     color: "bg-indigo-500",
-    concepts: [
-      "Simple harmonic motion",
-      "Period and frequency",
-      "Spring-mass systems",
-      "Pendulum motion",
-      "Energy in oscillations",
-    ],
+    concepts: ["Simple harmonic motion", "Period and frequency", "Spring-mass systems", "Pendulums"],
     simulations: [
-      {
-        id: "spring-mass",
-        title: "Spring-Mass System",
-        description: "Explore simple harmonic motion with springs",
-        difficulty: "Advanced",
-        completed: userProgress.completedSimulations.includes("spring-mass"),
-      },
-      {
-        id: "pendulum-shm",
-        title: "Pendulum Oscillations",
-        description: "Study pendulum motion and period dependence",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("pendulum-shm"),
-      },
+      { id: "spring-mass", title: "Spring-Mass System", description: "Explore SHM with springs", difficulty: "Advanced", completed: false },
     ],
     videos: [
-      {
-        title: "Introduction to Simple Harmonic Motion",
-        duration: "16:45",
-        rating: 4.8,
-        views: "130K",
-        watched: userProgress.watchedVideos.includes("shm-intro"),
-        url: "https://www.youtube.com/watch?v=Qf5mKtjIqSs",
-        description: "Basic concepts of oscillatory motion and SHM",
-      },
-      {
-        title: "Pendulum Physics",
-        duration: "14:20",
-        rating: 4.7,
-        views: "95K",
-        watched: userProgress.watchedVideos.includes("shm-pendulum"),
-        url: "https://www.youtube.com/watch?v=4zqtZAg7lJ0",
-        description: "Understanding pendulum motion and period calculations",
-      },
+      { title: "Intro to Simple Harmonic Motion", duration: "16:45", rating: 4.8, views: "130K", watched: false, url: "https://www.youtube.com/watch?v=Qf5mKtjIqSs", description: "Oscillatory motion basics" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Spring-Mass Problems",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("shm-1"),
-        score: null,
-      },
-      {
-        id: 2,
-        title: "Pendulum Calculations",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("shm-2"),
-        score: null,
-      },
-      {
-        id: 3,
-        title: "Energy in Oscillations",
-        difficulty: "Advanced",
-        completed: userProgress.completedProblems.includes("shm-3"),
-        score: null,
-      },
+      { id: 1, title: "Simple Harmonic Motion Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Simple Harmonic Motion Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
   "torque-rotation": {
@@ -530,160 +175,37 @@ const topicData = {
     icon: Settings,
     progress: 0,
     color: "bg-orange-500",
-    concepts: [
-      "Torque and rotational equilibrium",
-      "Moment of inertia",
-      "Rotational kinematics",
-      "Newton's second law for rotation",
-      "Angular momentum",
-    ],
+    concepts: ["Torque", "Moment of inertia", "Rotational kinematics", "Angular momentum"],
     simulations: [
-      {
-        id: "torque-balance",
-        title: "Torque Balance",
-        description: "Explore rotational equilibrium and torque",
-        difficulty: "Basic",
-        completed: userProgress.completedSimulations.includes("torque-balance"),
-      },
-      {
-        id: "rotating-disk",
-        title: "Rotating Disk",
-        description: "Analyze rotational motion and angular acceleration",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("rotating-disk"),
-      },
-      {
-        id: "gyroscope",
-        title: "Gyroscope Physics",
-        description: "Understand gyroscopic motion and precession",
-        difficulty: "Advanced",
-        completed: userProgress.completedSimulations.includes("gyroscope"),
-      },
+      { id: "torque-balance", title: "Torque Balance", description: "Rotational equilibrium", difficulty: "Basic", completed: false },
+      { id: "rotating-disk", title: "Rotating Disk", description: "Rotational motion analysis", difficulty: "Intermediate", completed: false },
+      { id: "gyroscope", title: "Gyroscope Physics", description: "Gyroscopic motion", difficulty: "Advanced", completed: false },
     ],
     videos: [
-      {
-        title: "Introduction to Torque",
-        duration: "15:30",
-        rating: 4.8,
-        views: "120K",
-        watched: userProgress.watchedVideos.includes("torque-intro"),
-        url: "https://www.youtube.com/watch?v=YlYEi0PgG1g",
-        description: "Basic concepts of torque and rotational motion",
-      },
-      {
-        title: "Moment of Inertia Explained",
-        duration: "18:45",
-        rating: 4.9,
-        views: "95K",
-        watched: userProgress.watchedVideos.includes("moment-inertia"),
-        url: "https://www.youtube.com/watch?v=jIMihpDmBpY",
-        description: "Understanding moment of inertia for different shapes",
-      },
-      {
-        title: "Rotational Dynamics Problems",
-        duration: "22:15",
-        rating: 4.7,
-        views: "85K",
-        watched: userProgress.watchedVideos.includes("rotational-dynamics"),
-        url: "https://www.youtube.com/watch?v=3A8bBWQk8xE",
-        description: "Problem solving with rotational motion equations",
-      },
+      { title: "Introduction to Torque", duration: "15:30", rating: 4.8, views: "120K", watched: false, url: "https://www.youtube.com/watch?v=YlYEi0PgG1g", description: "Torque basics" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Torque and Equilibrium",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("torque-1"),
-        score: null,
-      },
-      {
-        id: 2,
-        title: "Rotational Kinematics",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("torque-2"),
-        score: null,
-      },
-      {
-        id: 3,
-        title: "Complex Rotation Problems",
-        difficulty: "Advanced",
-        completed: userProgress.completedProblems.includes("torque-3"),
-        score: null,
-      },
+      { id: 1, title: "Torque & Rotational Dynamics Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Torque & Rotational Dynamics Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
   "rotational-energy": {
     title: "Rotational Energy & Momentum",
     description: "Energy and momentum in rotating systems",
-    icon: RotateCcw,
+    icon: RotateCcw, // Re-using momentum icon, consider a different one if available
     progress: 0,
     color: "bg-pink-500",
-    concepts: [
-      "Rotational kinetic energy",
-      "Angular momentum",
-      "Conservation of angular momentum",
-      "Rolling motion",
-      "Combined translational and rotational motion",
-    ],
+    concepts: ["Rotational kinetic energy", "Conservation of angular momentum", "Rolling motion"],
     simulations: [
-      {
-        id: "rolling-objects",
-        title: "Rolling Motion",
-        description: "Compare rolling vs sliding motion down inclines",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("rolling-objects"),
-      },
-      {
-        id: "angular-momentum",
-        title: "Angular Momentum Conservation",
-        description: "Explore conservation of angular momentum",
-        difficulty: "Advanced",
-        completed: userProgress.completedSimulations.includes("angular-momentum"),
-      },
+      { id: "rolling-objects", title: "Rolling Motion", description: "Rolling vs sliding", difficulty: "Intermediate", completed: false },
+      { id: "angular-momentum", title: "Angular Momentum Conservation", description: "Explore L conservation", difficulty: "Advanced", completed: false },
     ],
     videos: [
-      {
-        title: "Rotational Energy",
-        duration: "16:20",
-        rating: 4.8,
-        views: "110K",
-        watched: userProgress.watchedVideos.includes("rotational-energy"),
-        url: "https://www.youtube.com/watch?v=HxTZ446tbzE",
-        description: "Understanding rotational kinetic energy",
-      },
-      {
-        title: "Angular Momentum",
-        duration: "19:45",
-        rating: 4.9,
-        views: "98K",
-        watched: userProgress.watchedVideos.includes("angular-momentum-video"),
-        url: "https://www.youtube.com/watch?v=7gf6YpdvtE0",
-        description: "Angular momentum and its conservation",
-      },
+      { title: "Rotational Energy", duration: "16:20", rating: 4.8, views: "110K", watched: false, url: "https://www.youtube.com/watch?v=HxTZ446tbzE", description: "Rotational KE" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Rotational Energy Problems",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("rot-energy-1"),
-        score: null,
-      },
-      {
-        id: 2,
-        title: "Rolling Motion Analysis",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("rot-energy-2"),
-        score: null,
-      },
-      {
-        id: 3,
-        title: "Angular Momentum Conservation",
-        difficulty: "Advanced",
-        completed: userProgress.completedProblems.includes("rot-energy-3"),
-        score: null,
-      },
+      { id: 1, title: "Rotational Energy & Momentum Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Rotational Energy & Momentum Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
   fluids: {
@@ -692,112 +214,60 @@ const topicData = {
     icon: Droplets,
     progress: 0,
     color: "bg-cyan-500",
-    concepts: [
-      "Fluid pressure and density",
-      "Buoyancy and Archimedes' principle",
-      "Fluid flow and continuity",
-      "Bernoulli's equation",
-      "Viscosity and turbulence",
-    ],
+    concepts: ["Fluid pressure", "Buoyancy", "Archimedes' principle", "Fluid flow", "Bernoulli's equation"],
     simulations: [
-      {
-        id: "buoyancy",
-        title: "Buoyancy Simulator",
-        description: "Explore floating and sinking objects",
-        difficulty: "Basic",
-        completed: userProgress.completedSimulations.includes("buoyancy"),
-      },
-      {
-        id: "fluid-flow",
-        title: "Fluid Flow",
-        description: "Visualize fluid flow and Bernoulli's principle",
-        difficulty: "Intermediate",
-        completed: userProgress.completedSimulations.includes("fluid-flow"),
-      },
-      {
-        id: "pressure-depth",
-        title: "Pressure vs Depth",
-        description: "Understand how pressure varies with depth",
-        difficulty: "Basic",
-        completed: userProgress.completedSimulations.includes("pressure-depth"),
-      },
+      { id: "buoyancy", title: "Buoyancy Simulator", description: "Floating/sinking objects", difficulty: "Basic", completed: false },
+      { id: "fluid-flow", title: "Fluid Flow", description: "Bernoulli's principle", difficulty: "Intermediate", completed: false },
+      { id: "pressure-depth", title: "Pressure vs Depth", description: "Pressure variation", difficulty: "Basic", completed: false },
     ],
     videos: [
-      {
-        title: "Introduction to Fluids",
-        duration: "14:30",
-        rating: 4.7,
-        views: "105K",
-        watched: userProgress.watchedVideos.includes("fluids-intro"),
-        url: "https://www.youtube.com/watch?v=fJefjG3xhW0",
-        description: "Basic fluid properties and pressure",
-      },
-      {
-        title: "Buoyancy and Archimedes",
-        duration: "17:20",
-        rating: 4.8,
-        views: "125K",
-        watched: userProgress.watchedVideos.includes("buoyancy-video"),
-        url: "https://www.youtube.com/watch?v=OaGBPQpIzvc",
-        description: "Understanding buoyant force and floating",
-      },
+      { title: "Introduction to Fluids", duration: "14:30", rating: 4.7, views: "105K", watched: false, url: "https://www.youtube.com/watch?v=fJefjG3xhW0", description: "Fluid properties" },
     ],
     problems: [
-      {
-        id: 1,
-        title: "Fluid Pressure Problems",
-        difficulty: "Basic",
-        completed: userProgress.completedProblems.includes("fluids-1"),
-        score: null,
-      },
-      {
-        id: 2,
-        title: "Buoyancy Calculations",
-        difficulty: "Intermediate",
-        completed: userProgress.completedProblems.includes("fluids-2"),
-        score: null,
-      },
-      {
-        id: 3,
-        title: "Fluid Flow Analysis",
-        difficulty: "Advanced",
-        completed: userProgress.completedProblems.includes("fluids-3"),
-        score: null,
-      },
+      { id: 1, title: "Fluids Quiz 1", difficulty: "Basic", completed: false, score: null },
+      { id: 2, title: "Fluids Quiz 2", difficulty: "Intermediate", completed: false, score: null },
     ],
   },
-}
+};
 
-// Helper functions - now defined after topicData
-const calculateTopicProgress = (topicId: string) => {
-  const topic = topicData[topicId as keyof typeof topicData]
-  if (!topic) return 0
+// Helper function (no longer uses global topicData directly for problem completion for progress calculation)
+const calculateTopicProgressLocal = (topic: any, completedProblemMap: { [key: string]: boolean }) => {
+  if (!topic) return 0;
 
-  const completedSims = topic.simulations.filter((sim) => sim.completed).length
-  const completedProbs = topic.problems.filter((prob) => prob.completed).length
-  const watchedVids = topic.videos.filter((video) => video.watched).length
+  // Simulation completion is now handled by allSimulationsStatus via useEffect update
+  const completedSims = topic.simulations.filter((sim: any) => sim.completed).length;
+  
+  // Problem completion for progress calculation needs to use the map from localStorage
+  let completedProbs = 0;
+  if (topic.problems) {
+    topic.problems.forEach((prob: any) => {
+      const problemKey = `${topic.id}-${prob.id}`; // topic.id here is the string key like "kinematics"
+      if (completedProblemMap[problemKey]) {
+        completedProbs++;
+      }
+    });
+  }
 
-  const totalActivities = topic.simulations.length + topic.problems.length + topic.videos.length
-  const completedActivities = completedSims + completedProbs + watchedVids
+  // Video watching status (assuming it's managed via userProgress or similar, or set to false if not tracked)
+  const watchedVids = topic.videos.filter((video: any) => video.watched).length;
 
-  return totalActivities > 0 ? Math.round((completedActivities / totalActivities) * 100) : 0
-}
+  const totalActivities = (topic.simulations?.length || 0) + (topic.problems?.length || 0) + (topic.videos?.length || 0);
+  const completedActivities = completedSims + completedProbs + watchedVids;
+  
+  return totalActivities > 0 ? Math.round((completedActivities / totalActivities) * 100) : 0;
+};
 
-// Update progress values after topicData is defined
-// This initial progress calculation will be based on potentially stale `problem.completed` values
-// The useEffect in the component will recalculate for the current topic with fresh data.
-Object.keys(topicData).forEach((topicId) => {
-  const topic = topicData[topicId as keyof typeof topicData]
-  topic.progress = calculateTopicProgress(topicId)
-})
 
 export default function TopicPage() {
-  const params = useParams()
-  const topicId = params.id as string
+  const params = useParams();
+  const topicId = params.id as string; // This is the key for topicData, e.g., "kinematics"
 
-  // Initialize state with data from topicData. This will be updated by useEffect.
-  // Type assertion for topic structure; consider defining a type for Topic if not already done elsewhere.
-  const [currentTopic, setCurrentTopic] = useState(() => topicData[topicId as keyof typeof topicData]);
+  const [currentTopic, setCurrentTopic] = useState(() => {
+    const initialTopic = topicData[topicId as keyof typeof topicData];
+    // Initial progress calculation can be done here or deferred to useEffect
+    // For now, use the statically set progress or let useEffect handle it.
+    return initialTopic;
+  });
 
   useEffect(() => {
     const userJson = localStorage.getItem("user");
@@ -808,11 +278,10 @@ export default function TopicPage() {
         userEmail = userData?.email || null;
       } catch (e) {
         console.error("Failed to parse user data from localStorage", e);
-        // userEmail remains null
       }
     }
 
-    let completedQuizzes: { [key: string]: boolean } = {};
+    let completedQuizzesFromStorage: { [key: string]: boolean } = {};
     if (userEmail) {
       const progressKey = `progress_${userEmail}`;
       const progressJson = localStorage.getItem(progressKey);
@@ -820,11 +289,10 @@ export default function TopicPage() {
         try {
           const progressData = JSON.parse(progressJson);
           if (progressData?.completedQuizzes) {
-            completedQuizzes = progressData.completedQuizzes;
+            completedQuizzesFromStorage = progressData.completedQuizzes;
           }
         } catch (e) {
           console.error("Failed to parse progress data from localStorage", e);
-          // completedQuizzes remains empty
         }
       }
     }
@@ -832,48 +300,44 @@ export default function TopicPage() {
     const initialTopicFromGlobal = topicData[topicId as keyof typeof topicData];
 
     if (initialTopicFromGlobal) {
-      // Update problem completion status
-      const updatedProblems = initialTopicFromGlobal.problems.map(problem => {
-        const problemKey = `${topicId}-${problem.id}`; // e.g., "kinematics-1"
-        return {
-          ...problem,
-          completed: completedQuizzes[problemKey] === true,
-        };
-      });
+      const updatedProblems = initialTopicFromGlobal.problems.map(problem => ({
+        ...problem,
+        completed: completedQuizzesFromStorage[`${topicId}-${problem.id}`] === true,
+        // score can also be updated from localStorage if available, e.g. progressData.quizScores[`${topicId}-${problem.id}`]
+      }));
 
-      // Update simulation completion status
-      const updatedSimulations = initialTopicFromGlobal.simulations.map(sim => {
-        return {
-          ...sim,
-          completed: allSimulationsStatus[sim.id] || false, // Use status from allSimulationsStatus
-        };
-      });
-
-      const newTopicState = {
+      const updatedSimulations = initialTopicFromGlobal.simulations.map(sim => ({
+        ...sim,
+        completed: allSimulationsStatus[sim.id] || false,
+      }));
+      
+      // Create a temporary topic object to pass to calculateTopicProgressLocal
+      // Add topicId to this temporary object so calculateTopicProgressLocal can build problemKey
+      const tempTopicForProgressCalc = {
         ...initialTopicFromGlobal,
-        problems: updatedProblems,
-        simulations: updatedSimulations, // Include updated simulations
+        id: topicId, // Add the topicId string (e.g. "kinematics") for progress calculation context
+        simulations: updatedSimulations,
+        problems: updatedProblems, 
+        // videos array remains as is from topicData, or could be updated if watch status is in localStorage
       };
 
-      // Recalculate progress for this new topic state
-      // Note: completedSims will now use the updatedSimulations
-      const completedSims = newTopicState.simulations.filter(sim => sim.completed).length;
-      const completedProbs = newTopicState.problems.filter(prob => prob.completed).length;
-      const watchedVids = newTopicState.videos.filter(video => video.watched).length; // Assuming video watching status is managed elsewhere or remains as is
+      const newProgress = calculateTopicProgressLocal(tempTopicForProgressCalc, completedQuizzesFromStorage);
       
-      const totalActivities = newTopicState.simulations.length + newTopicState.problems.length + newTopicState.videos.length;
-      
-      newTopicState.progress = totalActivities > 0 
-        ? Math.round(((completedSims + completedProbs + watchedVids) / totalActivities) * 100) 
-        : 0;
-      
-      setCurrentTopic(newTopicState);
+      setCurrentTopic({
+        ...initialTopicFromGlobal, // Start with the base global data
+        simulations: updatedSimulations, // Apply updated simulations
+        problems: updatedProblems,       // Apply updated problems
+        progress: newProgress,           // Apply new progress
+      });
+
     } else {
       setCurrentTopic(undefined); 
     }
-  }, [topicId]); // Rerun when topicId changes
+  // IMPORTANT: Add dependencies for user progress if it can change and cause re-calculation
+  // For now, only topicId, but in a real app, user login/logout or progress updates might trigger this.
+  }, [topicId]); 
 
-  const topic = currentTopic; // Use the state variable for rendering
+  const topic = currentTopic; 
 
   if (!topic) {
     return <div>Topic not found</div>

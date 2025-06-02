@@ -14,681 +14,329 @@ import { useParams } from "next/navigation"
 const quizData = {
   kinematics: {
     1: {
-      title: "Kinematics Fundamentals",
+      title: "Kinematics Quiz 1",
       difficulty: "Basic",
-      timeLimit: 600, // 10 minutes
+      timeLimit: 600, 
       questions: [
-        {
-          id: 1,
-          question: "An object moves with constant velocity. Which of the following is true?",
-          options: [
-            "The object is accelerating.",
-            "The net force on the object is zero.",
-            "The object's speed is increasing.",
-            "The object is changing direction."
-          ],
-          correct: 1,
-          explanation: "When an object moves with constant velocity, there is no acceleration, which means the net force acting on it must be zero (Newton's First Law).",
-          formula: "F_net = 0 for constant velocity",
-          points: 10,
-        },
-        {
-          id: 2,
-          question: "A car accelerates uniformly from rest. Which graph best represents its velocity over time?",
-          options: [
-            "A horizontal line above the time axis.",
-            "A straight line with positive slope starting at the origin.",
-            "A curve concave down starting at the origin.",
-            "A straight line with negative slope starting above the time axis."
-          ],
-          correct: 1,
-          explanation: "For uniform acceleration from rest, velocity increases linearly with time, resulting in a straight line with positive slope starting from the origin.",
-          formula: "v = v₀ + at",
-          points: 10,
-        },
-        {
-          id: 3,
-          question: "An object is thrown vertically upward. At its highest point:",
-          options: [
-            "Velocity and acceleration are zero.",
-            "Velocity is zero; acceleration is downward.",
-            "Velocity is downward; acceleration is zero.",
-            "Velocity and acceleration are both downward."
-          ],
-          correct: 1,
-          explanation: "At the highest point, the object momentarily stops (velocity = 0) but still experiences gravitational acceleration downward.",
-          formula: "a = -g (constant)",
-          points: 10,
-        },
-        {
-          id: 4,
-          question: "Which of the following statements about free fall is correct?",
-          options: [
-            "All objects fall at the same rate regardless of mass.",
-            "Heavier objects fall faster than lighter ones.",
-            "Air resistance causes all objects to fall at the same rate.",
-            "Objects in free fall have zero acceleration."
-          ],
-          correct: 0,
-          explanation: "In the absence of air resistance, all objects fall with the same acceleration due to gravity, regardless of their mass.",
-          formula: "a = g = 9.8 m/s²",
-          points: 10,
-        },
-        {
-          id: 5,
-          question: "A position-time graph with a straight line indicates:",
-          options: [
-            "Constant acceleration.",
-            "Changing velocity.",
-            "Constant velocity.",
-            "Object at rest."
-          ],
-          correct: 2,
-          explanation: "A straight line on a position-time graph indicates constant velocity, as the slope represents velocity.",
-          formula: "v = Δx/Δt",
-          points: 10,
-        }
+        { id: 1, question: "An object moves with constant velocity. Which of the following is true?", options: ["The object is accelerating.", "The net force on the object is zero.", "The object's speed is increasing.", "The object is changing direction."], correct: 1, explanation: "When an object moves with constant velocity, there is no acceleration, which means the net force acting on it must be zero (Newton's First Law).", formula: "F_net = 0 for constant velocity", points: 10 },
+        { id: 2, question: "A car accelerates uniformly from rest. Which graph best represents its velocity over time?", options: ["A horizontal line above the time axis.", "A straight line with positive slope starting at the origin.", "A curve concave down starting at the origin.", "A straight line with negative slope starting above the time axis."], correct: 1, explanation: "For uniform acceleration from rest, velocity increases linearly with time, resulting in a straight line with positive slope starting from the origin.", formula: "v = v₀ + at", points: 10 },
+        { id: 3, question: "An object is thrown vertically upward. At its highest point:", options: ["Velocity and acceleration are zero.", "Velocity is zero; acceleration is downward.", "Velocity is downward; acceleration is zero.", "Velocity and acceleration are both downward."], correct: 1, explanation: "At the highest point, the object momentarily stops (velocity = 0) but still experiences gravitational acceleration downward.", formula: "a = -g (constant)", points: 10 },
+        { id: 4, question: "Which of the following statements about free fall is correct?", options: ["All objects fall at the same rate regardless of mass.", "Heavier objects fall faster than lighter ones.", "Air resistance causes all objects to fall at the same rate.", "Objects in free fall have zero acceleration."], correct: 0, explanation: "In the absence of air resistance, all objects fall with the same acceleration due to gravity, regardless of their mass.", formula: "a = g = 9.8 m/s²", points: 10 },
+        { id: 5, question: "A position-time graph with a straight line indicates:", options: ["Constant acceleration.", "Changing velocity.", "Constant velocity.", "Object at rest."], correct: 2, explanation: "A straight line on a position-time graph indicates constant velocity, as the slope represents velocity.", formula: "v = Δx/Δt", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Kinematics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Kinematics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Kinematics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Kinematics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Kinematics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
       ],
     },
     2: {
-      title: "Advanced Kinematics",
+      title: "Kinematics Quiz 2",
       difficulty: "Intermediate",
-      timeLimit: 900, // 15 minutes
-      questions: [
-        {
-          id: 1,
-          question: "The area under a velocity-time graph represents:",
-          options: [
-            "Acceleration.",
-            "Displacement.",
-            "Speed.",
-            "Jerk."
-          ],
-          correct: 1,
-          explanation: "The area under a velocity-time graph represents displacement, as it is the integral of velocity with respect to time.",
-          formula: "Δx = ∫v dt",
-          points: 15,
-        },
-        {
-          id: 2,
-          question: "An object moving in a straight line slows down. Its acceleration is:",
-          options: [
-            "In the direction of motion.",
-            "Opposite to the direction of motion.",
-            "Zero.",
-            "Perpendicular to the direction of motion."
-          ],
-          correct: 1,
-          explanation: "When an object slows down, its acceleration is opposite to its velocity (direction of motion).",
-          formula: "a = Δv/Δt",
-          points: 15,
-        },
-        {
-          id: 3,
-          question: "A velocity-time graph with a horizontal line indicates:",
-          options: [
-            "Constant acceleration.",
-            "Changing velocity.",
-            "Constant velocity.",
-            "Object at rest."
-          ],
-          correct: 2,
-          explanation: "A horizontal line on a velocity-time graph indicates constant velocity, as the slope (acceleration) is zero.",
-          formula: "a = 0 for constant velocity",
-          points: 15,
-        },
-        {
-          id: 4,
-          question: "If an object has a negative acceleration, it is:",
-          options: [
-            "Always slowing down.",
-            "Always speeding up.",
-            "Slowing down or speeding up depending on direction of velocity.",
-            "Moving at constant speed."
-          ],
-          correct: 2,
-          explanation: "Negative acceleration can mean either slowing down in the positive direction or speeding up in the negative direction, depending on the initial velocity.",
-          formula: "a = Δv/Δt",
-          points: 15,
-        },
-        {
-          id: 5,
-          question: "Placeholder Question 5 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 6,
-          question: "Placeholder Question 6 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 7,
-          question: "Placeholder Question 7 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 8,
-          question: "Placeholder Question 8 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 9,
-          question: "Placeholder Question 9 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 10,
-          question: "Placeholder Question 10 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 11,
-          question: "Placeholder Question 11 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 12,
-          question: "Placeholder Question 12 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 13,
-          question: "Placeholder Question 13 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 14,
-          question: "Placeholder Question 14 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 15,
-          question: "Placeholder Question 15 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 16,
-          question: "Placeholder Question 16 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 17,
-          question: "Placeholder Question 17 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 18,
-          question: "Placeholder Question 18 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 19,
-          question: "Placeholder Question 19 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        },
-        {
-          id: 20,
-          question: "Placeholder Question 20 - Advanced Kinematics",
-          options: ["Option A", "Option B", "Option C", "Option D"],
-          correct: 0,
-          explanation: "This is a placeholder explanation.",
-          formula: "Placeholder formula",
-          points: 10,
-        }
+      timeLimit: 900,
+      questions: [ 
+        { id: 1, question: "The area under a velocity-time graph represents:", options: ["Acceleration.", "Displacement.", "Speed.", "Jerk."], correct: 1, explanation: "The area under a velocity-time graph represents displacement.", formula: "Δx = ∫v dt", points: 10 },
+        { id: 2, question: "An object moving in a straight line slows down. Its acceleration is:", options: ["In the direction of motion.", "Opposite to the direction of motion.", "Zero.", "Perpendicular to the direction of motion."], correct: 1, explanation: "When an object slows down, its acceleration is opposite to its velocity.", formula: "a = Δv/Δt", points: 10 },
+        { id: 3, question: "A velocity-time graph with a horizontal line indicates:", options: ["Constant acceleration.", "Changing velocity.", "Constant velocity.", "Object at rest."], correct: 2, explanation: "A horizontal line on a velocity-time graph indicates constant velocity.", formula: "a = 0", points: 10 },
+        { id: 4, question: "If an object has a negative acceleration, it is:", options: ["Always slowing down.", "Always speeding up.", "Slowing down or speeding up depending on direction of velocity.", "Moving at constant speed."], correct: 2, explanation: "Negative acceleration can mean slowing down (if velocity is positive) or speeding up (if velocity is negative).", formula: "N/A", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Kinematics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Kinematics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Kinematics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Kinematics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Kinematics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Kinematics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
       ],
     },
   },
   dynamics: {
     1: {
-      title: "Newton's Laws",
+      title: "Dynamics Quiz 1",
       difficulty: "Basic",
       timeLimit: 600,
       questions: [
-        {
-          id: 1,
-          question: "A box remains at rest on a horizontal surface. Which of the following best explains this situation?",
-          options: [
-            "No forces act on the box.",
-            "The net force on the box is zero.",
-            "The box has no mass.",
-            "The box is in motion but appears stationary."
-          ],
-          correct: 1,
-          explanation: "According to Newton's First Law, an object remains at rest when the net force acting on it is zero.",
-          formula: "F_net = 0",
-          points: 10,
-        },
-        {
-          id: 2,
-          question: "An object moves at a constant velocity. What can be said about the net external force acting on it?",
-          options: [
-            "It is directed opposite to the motion.",
-            "It is directed along the motion.",
-            "It is zero.",
-            "It varies with time."
-          ],
-          correct: 2,
-          explanation: "According to Newton's First Law, an object moving at constant velocity has zero net force acting on it.",
-          formula: "F_net = 0 for constant velocity",
-          points: 10,
-        },
-        {
-          id: 3,
-          question: "According to Newton's Third Law, when you push against a wall, the wall:",
-          options: [
-            "Does not exert any force.",
-            "Exerts an equal and opposite force on you.",
-            "Exerts a greater force on you.",
-            "Moves in the direction of your push."
-          ],
-          correct: 1,
-          explanation: "Newton's Third Law states that for every action force, there is an equal and opposite reaction force.",
-          formula: "F_action = -F_reaction",
-          points: 10,
-        },
-        {
-          id: 4,
-          question: "A car accelerates forward. The force propelling the car forward is exerted by:",
-          options: [
-            "The engine on the wheels.",
-            "The wheels on the road.",
-            "The road on the wheels.",
-            "Air resistance."
-          ],
-          correct: 2,
-          explanation: "The road exerts a forward force on the wheels, which propels the car forward (Newton's Third Law).",
-          formula: "F = ma",
-          points: 10,
-        }
+        { id: 1, question: "A box remains at rest on a horizontal surface. Which of the following best explains this situation?", options: ["No forces act on the box.", "The net force on the box is zero.", "The box has no mass.", "The box is in motion but appears stationary."], correct: 1, explanation: "Newton's First Law: object at rest stays at rest if net force is zero.", formula: "F_net = 0", points: 10 },
+        { id: 2, question: "An object moves at a constant velocity. What can be said about the net external force acting on it?", options: ["It is directed opposite to the motion.", "It is directed along the motion.", "It is zero.", "It varies with time."], correct: 2, explanation: "Newton's First Law: constant velocity means zero net force.", formula: "F_net = 0", points: 10 },
+        { id: 3, question: "According to Newton's Third Law, when you push against a wall, the wall:", options: ["Does not exert any force.", "Exerts an equal and opposite force on you.", "Exerts a greater force on you.", "Moves in the direction of your push."], correct: 1, explanation: "Newton's Third Law: action-reaction pair.", formula: "F_AB = -F_BA", points: 10 },
+        { id: 4, question: "A car accelerates forward. The force propelling the car forward is exerted by:", options: ["The engine on the wheels.", "The wheels on the road.", "The road on the wheels.", "Air resistance."], correct: 2, explanation: "The road exerts a forward static friction force on the tires.", formula: "F = ma", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+    2: {
+      title: "Dynamics Quiz 2",
+      difficulty: "Intermediate",
+      timeLimit: 900,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
       ],
     },
   },
   "circular-motion": {
     1: {
-      title: "Circular Motion Basics",
+      title: "Circular Motion Quiz 1",
       difficulty: "Basic",
       timeLimit: 600,
       questions: [
-        {
-          id: 1,
-          question: "An object moves in a circle at constant speed. What is the direction of its acceleration?",
-          options: [
-            "Tangential to the circle",
-            "Radially outward",
-            "Radially inward",
-            "Zero"
-          ],
-          correct: 2,
-          explanation: "In uniform circular motion, the acceleration is directed toward the center of the circle (centripetal acceleration).",
-          formula: "a_c = v²/r",
-          points: 10,
-        },
-        {
-          id: 2,
-          question: "A car rounds a flat curve at constant speed. What provides the necessary centripetal force?",
-          options: [
-            "Gravity",
-            "Normal force",
-            "Friction",
-            "Engine thrust"
-          ],
-          correct: 2,
-          explanation: "On a flat curve, static friction between the tires and the road provides the centripetal force needed for circular motion.",
-          formula: "F_c = mv²/r",
-          points: 10,
-        },
-        {
-          id: 3,
-          question: "In uniform circular motion, which of the following remains constant?",
-          options: [
-            "Velocity",
-            "Acceleration",
-            "Speed",
-            "Direction of motion"
-          ],
-          correct: 2,
-          explanation: "In uniform circular motion, only the speed remains constant, while velocity and acceleration are constantly changing direction.",
-          formula: "v = constant",
-          points: 10,
-        },
-        {
-          id: 4,
-          question: "A ball is tied to a string and swung in a horizontal circle. If the string breaks, the ball will:",
-          options: [
-            "Move radially inward",
-            "Move radially outward",
-            "Continue in a circular path",
-            "Move tangentially to the circle"
-          ],
-          correct: 3,
-          explanation: "When the centripetal force (string tension) is removed, the ball will move in a straight line tangent to its circular path (Newton's First Law).",
-          formula: "F_c = 0 after string breaks",
-          points: 10,
-        }
+        { id: 1, question: "An object moves in a circle at constant speed. What is the direction of its acceleration?", options: ["Tangential to the circle", "Radially outward", "Radially inward", "Zero"], correct: 2, explanation: "Centripetal acceleration is always directed toward the center.", formula: "a_c = v²/r", points: 10 },
+        { id: 2, question: "A car rounds a flat curve at constant speed. What provides the necessary centripetal force?", options: ["Gravity", "Normal force", "Friction", "Engine thrust"], correct: 2, explanation: "Static friction provides the centripetal force on a flat curve.", formula: "F_c = mv²/r", points: 10 },
+        { id: 3, question: "In uniform circular motion, which of the following remains constant?", options: ["Velocity", "Acceleration", "Speed", "Direction of motion"], correct: 2, explanation: "Speed is constant; velocity (a vector) changes direction.", formula: "N/A", points: 10 },
+        { id: 4, question: "A ball is tied to a string and swung in a horizontal circle. If the string breaks, the ball will:", options: ["Move radially inward", "Move radially outward", "Continue in a circular path", "Move tangentially to the circle"], correct: 3, explanation: "The ball will follow Newton's First Law and move tangentially.", formula: "N/A", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Circular Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Circular Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Circular Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Circular Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Circular Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Circular Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+    2: {
+      title: "Circular Motion Quiz 2",
+      difficulty: "Intermediate",
+      timeLimit: 900,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Circular Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
       ],
     },
   },
   energy: {
     1: {
-      title: "Work and Energy",
+      title: "Energy Quiz 1",
       difficulty: "Basic",
       timeLimit: 600,
       questions: [
-        {
-          id: 1,
-          question: "When a constant force is applied to an object, the work done on the object is:",
-          options: [
-            "Always positive",
-            "Always negative",
-            "Zero if the force is perpendicular to the displacement",
-            "Independent of the angle between force and displacement"
-          ],
-          correct: 2,
-          explanation: "Work is zero when the force is perpendicular to the displacement, as W = F·d·cos(θ) and cos(90°) = 0.",
-          formula: "W = F·d·cos(θ)",
-          points: 10,
-        },
-        {
-          id: 2,
-          question: "Which of the following statements is true regarding kinetic energy?",
-          options: [
-            "It is a scalar quantity",
-            "It depends on the velocity squared",
-            "It is always positive",
-            "It is independent of mass"
-          ],
-          correct: 1,
-          explanation: "Kinetic energy depends on the square of velocity, as shown in the formula KE = ½mv².",
-          formula: "KE = ½mv²",
-          points: 10,
-        },
-        {
-          id: 3,
-          question: "If the velocity of an object is doubled, its kinetic energy:",
-          options: [
-            "Doubles",
-            "Quadruples",
-            "Halves",
-            "Remains the same"
-          ],
-          correct: 1,
-          explanation: "Since kinetic energy depends on velocity squared, doubling the velocity quadruples the kinetic energy.",
-          formula: "KE ∝ v²",
-          points: 10,
-        },
-        {
-          id: 4,
-          question: "The work-energy theorem states that the work done on an object is equal to:",
-          options: [
-            "The change in its velocity",
-            "The change in its momentum",
-            "The change in its kinetic energy",
-            "The product of force and time"
-          ],
-          correct: 2,
-          explanation: "The work-energy theorem states that the net work done on an object equals its change in kinetic energy.",
-          formula: "W_net = ΔKE",
-          points: 10,
-        }
+        { id: 1, question: "When a constant force is applied to an object, the work done on the object is:", options: ["Always positive", "Always negative", "Zero if the force is perpendicular to the displacement", "Independent of the angle between force and displacement"], correct: 2, explanation: "W = Fd cos(θ), cos(90°) = 0.", formula: "W = Fd cos(θ)", points: 10 },
+        { id: 2, question: "Which of the following statements is true regarding kinetic energy?", options: ["It is a scalar quantity", "It depends on the velocity squared", "It is always positive", "It is independent of mass"], correct: 1, explanation: "Kinetic energy is KE = ½mv².", formula: "KE = ½mv²", points: 10 }, // Note: Corrected to points: 10 for consistency, was 10. Original data had a mix.
+        { id: 3, question: "If the velocity of an object is doubled, its kinetic energy:", options: ["Doubles", "Quadruples", "Halves", "Remains the same"], correct: 1, explanation: "KE is proportional to v².", formula: "KE ∝ v²", points: 10 },
+        { id: 4, question: "The work-energy theorem states that the work done on an object is equal to:", options: ["The change in its velocity", "The change in its momentum", "The change in its kinetic energy", "The product of force and time"], correct: 2, explanation: "Net work done equals change in kinetic energy.", formula: "W_net = ΔKE", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Energy Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Energy Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Energy Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Energy Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Energy Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Energy Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+    2: {
+      title: "Energy Quiz 2",
+      difficulty: "Intermediate",
+      timeLimit: 900,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Energy Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
       ],
     },
   },
   momentum: {
     1: {
-      title: "Linear Momentum",
+      title: "Momentum Quiz 1",
       difficulty: "Basic",
       timeLimit: 600,
       questions: [
-        {
-          id: 1,
-          question: "Momentum is defined as the product of an object's:",
-          options: [
-            "Mass and velocity",
-            "Mass and acceleration",
-            "Force and time",
-            "Velocity and time"
-          ],
-          correct: 0,
-          explanation: "Momentum is defined as the product of an object's mass and velocity: p = mv.",
-          formula: "p = mv",
-          points: 10,
-        },
-        {
-          id: 2,
-          question: "Which of the following statements is true about momentum?",
-          options: [
-            "Momentum is a scalar quantity.",
-            "Momentum is conserved only when no external forces act on a system.",
-            "Momentum is always conserved in all types of collisions.",
-            "Momentum can be negative if the velocity is negative."
-          ],
-          correct: 1,
-          explanation: "Momentum is conserved only when no external forces act on a system, as per the law of conservation of momentum.",
-          formula: "Σp_initial = Σp_final",
-          points: 10,
-        },
-        {
-          id: 3,
-          question: "If the velocity of an object is doubled, its momentum:",
-          options: [
-            "Doubles",
-            "Quadruples",
-            "Halves",
-            "Remains the same"
-          ],
-          correct: 0,
-          explanation: "Since momentum is directly proportional to velocity, doubling the velocity doubles the momentum.",
-          formula: "p = mv",
-          points: 10,
-        },
-        {
-          id: 4,
-          question: "The impulse experienced by an object is equal to:",
-          options: [
-            "The change in its velocity",
-            "The change in its momentum",
-            "The product of force and time",
-            "All of the above"
-          ],
-          correct: 3,
-          explanation: "Impulse equals the change in momentum and is also equal to the product of force and time: J = Δp = F·Δt.",
-          formula: "J = Δp = F·Δt",
-          points: 10,
-        }
+        { id: 1, question: "Momentum is defined as the product of an object's:", options: ["Mass and velocity", "Mass and acceleration", "Force and time", "Velocity and time"], correct: 0, explanation: "p = mv.", formula: "p = mv", points: 10 },
+        { id: 2, question: "Which of the following statements is true about momentum?", options: ["Momentum is a scalar quantity.", "Momentum is conserved only when no external forces act on a system.", "Momentum is always conserved in all types of collisions.", "Momentum can be negative if the velocity is negative."], correct: 1, explanation: "Conservation of momentum requires no net external force.", formula: "Σp_i = Σp_f", points: 10 },
+        { id: 3, question: "If the velocity of an object is doubled, its momentum:", options: ["Doubles", "Quadruples", "Halves", "Remains the same"], correct: 0, explanation: "Momentum is directly proportional to velocity.", formula: "p = mv", points: 10 },
+        { id: 4, question: "The impulse experienced by an object is equal to:", options: ["The change in its velocity", "The change in its momentum", "The product of force and time", "All of the above"], correct: 3, explanation: "Impulse J = Δp = FΔt.", formula: "J = Δp", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+    2: {
+      title: "Momentum Quiz 2",
+      difficulty: "Intermediate",
+      timeLimit: 900,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
       ],
     },
   },
   "harmonic-motion": {
     1: {
-      title: "Simple Harmonic Motion",
+      title: "Simple Harmonic Motion Quiz 1",
       difficulty: "Basic",
       timeLimit: 600,
       questions: [
-        {
-          id: 1,
-          question: "In simple harmonic motion, when is the acceleration of the object at its maximum magnitude?",
-          options: [
-            "At the equilibrium position",
-            "At maximum displacement",
-            "When velocity is maximum",
-            "When kinetic energy is maximum"
-          ],
-          correct: 1,
-          explanation: "In SHM, acceleration is maximum at maximum displacement, where the restoring force is greatest.",
-          formula: "a = -ω²x",
-          points: 10,
-        },
-        {
-          id: 2,
-          question: "A mass-spring system oscillates with amplitude A. At what displacement is the kinetic energy equal to the potential energy?",
-          options: [
-            "0",
-            "A/2",
-            "A/√2",
-            "A"
-          ],
-          correct: 2,
-          explanation: "When KE = PE, the displacement is A/√2, as this is where half the total energy is kinetic and half is potential.",
-          formula: "KE = PE at x = A/√2",
-          points: 10,
-        },
-        {
-          id: 3,
-          question: "Doubling the mass attached to a spring affects the period how?",
-          options: [
-            "Period doubles",
-            "Period increases by √2",
-            "Period remains unchanged",
-            "Period decreases by √2"
-          ],
-          correct: 1,
-          explanation: "The period of a mass-spring system is proportional to the square root of the mass: T = 2π√(m/k).",
-          formula: "T = 2π√(m/k)",
-          points: 10,
-        },
-        {
-          id: 4,
-          question: "A pendulum's length is quadrupled. How does its period change?",
-          options: [
-            "Doubles",
-            "Quadruples",
-            "Halves",
-            "Remains the same"
-          ],
-          correct: 0,
-          explanation: "The period of a pendulum is proportional to the square root of its length: T = 2π√(L/g).",
-          formula: "T = 2π√(L/g)",
-          points: 10,
-        }
+        { id: 1, question: "In simple harmonic motion, when is the acceleration of the object at its maximum magnitude?", options: ["At the equilibrium position", "At maximum displacement", "When velocity is maximum", "When kinetic energy is maximum"], correct: 1, explanation: "Acceleration is max at max displacement (F=-kx).", formula: "a = -ω²x", points: 10 },
+        { id: 2, question: "A mass-spring system oscillates with amplitude A. At what displacement is the kinetic energy equal to the potential energy?", options: ["0", "A/2", "A/√2", "A"], correct: 2, explanation: "KE = PE when x = A/√2.", formula: "N/A", points: 10 },
+        { id: 3, question: "Doubling the mass attached to a spring affects the period how?", options: ["Period doubles", "Period increases by √2", "Period remains unchanged", "Period decreases by √2"], correct: 1, explanation: "T = 2π√(m/k).", formula: "T ∝ √m", points: 10 },
+        { id: 4, question: "A pendulum's length is quadrupled. How does its period change?", options: ["Doubles", "Quadruples", "Halves", "Remains the same"], correct: 0, explanation: "T = 2π√(L/g).", formula: "T ∝ √L", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Simple Harmonic Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Simple Harmonic Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Simple Harmonic Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Simple Harmonic Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Simple Harmonic Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Simple Harmonic Motion Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+    2: {
+      title: "Simple Harmonic Motion Quiz 2",
+      difficulty: "Intermediate",
+      timeLimit: 900,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Simple Harmonic Motion Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
       ],
     },
   },
   fluids: {
     1: {
-      title: "Fluid Mechanics",
+      title: "Fluids Quiz 1",
       difficulty: "Basic",
       timeLimit: 600,
       questions: [
-        {
-          id: 1,
-          question: "An object is fully submerged in water and experiences a buoyant force. If the object is moved to a fluid with a higher density, how does the buoyant force change?",
-          options: [
-            "Increases",
-            "Decreases",
-            "Remains the same",
-            "Cannot be determined without more information"
-          ],
-          correct: 0,
-          explanation: "Buoyant force equals the weight of the displaced fluid. A denser fluid has more weight per unit volume, so the buoyant force increases.",
-          formula: "F_b = ρ_fluid·V_displaced·g",
-          points: 10,
-        },
-        {
-          id: 2,
-          question: "A cube floats in water with half of its volume submerged. If placed in oil with a lower density than water, what happens to the submerged volume?",
-          options: [
-            "It increases",
-            "It decreases",
-            "It remains the same",
-            "The cube sinks"
-          ],
-          correct: 0,
-          explanation: "In a less dense fluid, a greater volume must be submerged to displace the same weight of fluid.",
-          formula: "V_submerged = m_object/ρ_fluid",
-          points: 10,
-        },
-        {
-          id: 3,
-          question: "In a fluid at rest, how does pressure change with depth?",
-          options: [
-            "Increases linearly",
-            "Decreases linearly",
-            "Remains constant",
-            "Increases exponentially"
-          ],
-          correct: 0,
-          explanation: "Pressure increases linearly with depth according to the equation P = ρgh.",
-          formula: "P = P₀ + ρgh",
-          points: 10,
-        },
-        {
-          id: 4,
-          question: "Two identical containers are filled to the same height, one with water and the other with mercury. Which container has a greater pressure at the bottom?",
-          options: [
-            "Water",
-            "Mercury",
-            "Both have the same pressure",
-            "Cannot be determined"
-          ],
-          correct: 1,
-          explanation: "Mercury has a higher density than water, so at the same depth, the pressure is greater.",
-          formula: "P = ρgh",
-          points: 10,
-        }
+        { id: 1, question: "An object is fully submerged in water and experiences a buoyant force. If the object is moved to a fluid with a higher density, how does the buoyant force change?", options: ["Increases", "Decreases", "Remains the same", "Cannot be determined without more information"], correct: 0, explanation: "Buoyant force is proportional to fluid density.", formula: "F_b = ρ_fluid Vg", points: 10 },
+        { id: 2, question: "A cube floats in water with half of its volume submerged. If placed in oil with a lower density than water, what happens to the submerged volume?", options: ["It increases", "It decreases", "It remains the same", "The cube sinks"], correct: 0, explanation: "To float, weight of displaced fluid must equal object weight. Less dense fluid means more volume needed.", formula: "V_sub = m_obj / ρ_fluid", points: 10 },
+        { id: 3, question: "In a fluid at rest, how does pressure change with depth?", options: ["Increases linearly", "Decreases linearly", "Remains constant", "Increases exponentially"], correct: 0, explanation: "Pressure increases linearly with depth.", formula: "P = P₀ + ρgh", points: 10 },
+        { id: 4, question: "Two identical containers are filled to the same height, one with water and the other with mercury. Which container has a greater pressure at the bottom?", options: ["Water", "Mercury", "Both have the same pressure", "Cannot be determined"], correct: 1, explanation: "Mercury is denser than water.", formula: "P = ρgh", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Fluids Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Fluids Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Fluids Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Fluids Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Fluids Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Fluids Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+    2: {
+      title: "Fluids Quiz 2",
+      difficulty: "Intermediate",
+      timeLimit: 900,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Fluids Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+  },
+  "torque-rotation": {
+    1: {
+      title: "Torque & Rotational Dynamics Quiz 1",
+      difficulty: "Basic",
+      timeLimit: 600,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Torque & Rotational Dynamics Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+    2: {
+      title: "Torque & Rotational Dynamics Quiz 2",
+      difficulty: "Intermediate",
+      timeLimit: 900,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Torque & Rotational Dynamics Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+  },
+  "rotational-energy": {
+    1: {
+      title: "Rotational Energy & Momentum Quiz 1",
+      difficulty: "Basic",
+      timeLimit: 600,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Rotational Energy & Momentum Quiz 1", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+      ],
+    },
+    2: {
+      title: "Rotational Energy & Momentum Quiz 2",
+      difficulty: "Intermediate",
+      timeLimit: 900,
+      questions: [
+        { id: 1, question: "Placeholder Question 1 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 2, question: "Placeholder Question 2 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 3, question: "Placeholder Question 3 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 4, question: "Placeholder Question 4 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 5, question: "Placeholder Question 5 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 6, question: "Placeholder Question 6 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 7, question: "Placeholder Question 7 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 8, question: "Placeholder Question 8 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 9, question: "Placeholder Question 9 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
+        { id: 10, question: "Placeholder Question 10 for Rotational Energy & Momentum Quiz 2", options: ["Option A", "Option B", "Option C", "Option D"], correct: 0, explanation: "This is a placeholder explanation.", formula: "Placeholder formula", points: 10 },
       ],
     },
   }
-}
+};
 
 export default function QuizPage() {
   const params = useParams()
@@ -706,7 +354,6 @@ export default function QuizPage() {
   const [isCompleted, setIsCompleted] = useState(false)
 
   useEffect(() => {
-    // Check if quiz is already completed
     const userData = localStorage.getItem("user")
     if (userData) {
       const parsedUser = JSON.parse(userData)
@@ -749,7 +396,6 @@ export default function QuizPage() {
     setScore(totalScore)
     setShowResults(true)
 
-    // Save quiz completion and score
     const userData = localStorage.getItem("user")
     if (userData) {
       const parsedUser = JSON.parse(userData)
@@ -757,7 +403,6 @@ export default function QuizPage() {
       const progress = savedProgress ? JSON.parse(savedProgress) : { completedQuizzes: {}, quizScores: {} }
       const quizKey = `${topic}-${quizId}`
       
-      // Only mark as completed if all questions were answered
       const allQuestionsAnswered = quiz.questions.every(q => selectedAnswers[q.id] !== undefined)
       
       const updatedProgress = {
@@ -893,7 +538,6 @@ export default function QuizPage() {
         </header>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Score Summary */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
@@ -924,7 +568,6 @@ export default function QuizPage() {
             </CardContent>
           </Card>
 
-          {/* Question Review */}
           <div className="space-y-6">
             {quiz.questions.map((question, index) => {
               const userAnswer = selectedAnswers[question.id]
@@ -1035,7 +678,6 @@ export default function QuizPage() {
       </header>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Progress */}
         <Card className="mb-6">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between mb-2">
@@ -1048,7 +690,6 @@ export default function QuizPage() {
           </CardContent>
         </Card>
 
-        {/* Question */}
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
