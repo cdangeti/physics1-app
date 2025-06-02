@@ -23,13 +23,37 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
+import { useEffect, useState } from "react"
 
-// User progress data - move to top
+// User progress data - (completedSimulations will be overridden by allSimulationsStatus)
 const userProgress = {
   completedSimulations: ["projectile", "graphs", "forces", "energy-pendulum", "collision-elastic"],
   completedProblems: ["kinematics-1", "kinematics-2", "dynamics-1", "energy-1", "energy-2", "energy-3"],
   watchedVideos: ["kinematics-intro", "kinematics-projectile", "dynamics-newton", "energy-conservation"],
 }
+
+// Data reflecting the actual completion status of all simulations
+// This should ideally be sourced from a shared location or service,
+// but for this task, it's defined here based on the review.
+const allSimulationsStatus: { [id: string]: boolean } = {
+  "projectile": true,
+  "graphs": true,
+  "relative": true,
+  "forces": true,
+  "friction": true,
+  "energy-pendulum": true,
+  "collision-elastic": true,
+  "centripetal": true,
+  "spring-mass": true,
+  "torque-balance": true,
+  "rotating-disk": true,
+  "gyroscope": true,
+  "rolling-objects": true,
+  "angular-momentum": true,
+  "buoyancy": true,
+  "fluid-flow": true,
+  "pressure-depth": true,
+};
 
 // Topic data with static structure first
 const topicData = {
@@ -760,6 +784,8 @@ const calculateTopicProgress = (topicId: string) => {
 }
 
 // Update progress values after topicData is defined
+// This initial progress calculation will be based on potentially stale `problem.completed` values
+// The useEffect in the component will recalculate for the current topic with fresh data.
 Object.keys(topicData).forEach((topicId) => {
   const topic = topicData[topicId as keyof typeof topicData]
   topic.progress = calculateTopicProgress(topicId)
@@ -768,7 +794,86 @@ Object.keys(topicData).forEach((topicId) => {
 export default function TopicPage() {
   const params = useParams()
   const topicId = params.id as string
-  const topic = topicData[topicId as keyof typeof topicData]
+
+  // Initialize state with data from topicData. This will be updated by useEffect.
+  // Type assertion for topic structure; consider defining a type for Topic if not already done elsewhere.
+  const [currentTopic, setCurrentTopic] = useState(() => topicData[topicId as keyof typeof topicData]);
+
+  useEffect(() => {
+    const userJson = localStorage.getItem("user");
+    let userEmail: string | null = null;
+    if (userJson) {
+      try {
+        const userData = JSON.parse(userJson);
+        userEmail = userData?.email || null;
+      } catch (e) {
+        console.error("Failed to parse user data from localStorage", e);
+        // userEmail remains null
+      }
+    }
+
+    let completedQuizzes: { [key: string]: boolean } = {};
+    if (userEmail) {
+      const progressKey = `progress_${userEmail}`;
+      const progressJson = localStorage.getItem(progressKey);
+      if (progressJson) {
+        try {
+          const progressData = JSON.parse(progressJson);
+          if (progressData?.completedQuizzes) {
+            completedQuizzes = progressData.completedQuizzes;
+          }
+        } catch (e) {
+          console.error("Failed to parse progress data from localStorage", e);
+          // completedQuizzes remains empty
+        }
+      }
+    }
+
+    const initialTopicFromGlobal = topicData[topicId as keyof typeof topicData];
+
+    if (initialTopicFromGlobal) {
+      // Update problem completion status
+      const updatedProblems = initialTopicFromGlobal.problems.map(problem => {
+        const problemKey = `${topicId}-${problem.id}`; // e.g., "kinematics-1"
+        return {
+          ...problem,
+          completed: completedQuizzes[problemKey] === true,
+        };
+      });
+
+      // Update simulation completion status
+      const updatedSimulations = initialTopicFromGlobal.simulations.map(sim => {
+        return {
+          ...sim,
+          completed: allSimulationsStatus[sim.id] || false, // Use status from allSimulationsStatus
+        };
+      });
+
+      const newTopicState = {
+        ...initialTopicFromGlobal,
+        problems: updatedProblems,
+        simulations: updatedSimulations, // Include updated simulations
+      };
+
+      // Recalculate progress for this new topic state
+      // Note: completedSims will now use the updatedSimulations
+      const completedSims = newTopicState.simulations.filter(sim => sim.completed).length;
+      const completedProbs = newTopicState.problems.filter(prob => prob.completed).length;
+      const watchedVids = newTopicState.videos.filter(video => video.watched).length; // Assuming video watching status is managed elsewhere or remains as is
+      
+      const totalActivities = newTopicState.simulations.length + newTopicState.problems.length + newTopicState.videos.length;
+      
+      newTopicState.progress = totalActivities > 0 
+        ? Math.round(((completedSims + completedProbs + watchedVids) / totalActivities) * 100) 
+        : 0;
+      
+      setCurrentTopic(newTopicState);
+    } else {
+      setCurrentTopic(undefined); 
+    }
+  }, [topicId]); // Rerun when topicId changes
+
+  const topic = currentTopic; // Use the state variable for rendering
 
   if (!topic) {
     return <div>Topic not found</div>
